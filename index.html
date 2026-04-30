@@ -1129,18 +1129,7 @@
 
         <div class="proj-card wide reveal">
           <div class="proj-img">
-            <!-- <img src="images/steering-assembly.jpg" alt="Steering Actuator"> -->
-            <div class="proj-placeholder">
-              <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="5" y="5" width="70" height="50" rx="2" stroke="currentColor" stroke-width="1.5" />
-                <circle cx="40" cy="30" r="15" stroke="currentColor" stroke-width="1.2" />
-                <circle cx="40" cy="30" r="5" stroke="currentColor" stroke-width="1" />
-                <rect x="12" y="18" width="12" height="24" rx="1" stroke="currentColor" stroke-width="0.8" />
-                <rect x="56" y="18" width="12" height="24" rx="1" stroke="currentColor" stroke-width="0.8" />
-              </svg>
-              <span>Add assembly photo</span>
-            </div>
-            <span class="add-note">Replace with image</span>
+            <img src="images/steering-assembly.jpg" alt="Steering Actuator Assembly">
           </div>
           <div class="proj-body">
             <div class="proj-type">Mechanical Design · Embedded Systems · Autonomous Vehicles</div>
@@ -1168,17 +1157,7 @@
 
         <div class="proj-card wide reveal">
           <div class="proj-img">
-            <!-- <img src="images/sic-ansys.jpg" alt="SiC FEM"> -->
-            <div class="proj-placeholder">
-              <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="5" y="8" width="70" height="44" rx="2" stroke="currentColor" stroke-width="1.5" />
-                <rect x="14" y="16" width="18" height="12" stroke="currentColor" stroke-width="1" />
-                <rect x="40" y="16" width="18" height="12" stroke="currentColor" stroke-width="1" />
-                <line x1="5" y1="36" x2="75" y2="36" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3 2" />
-              </svg>
-              <span>Add ANSYS render</span>
-            </div>
-            <span class="add-note">Replace with image</span>
+            <img src="images/sic-ansys.jpg" alt="SiC Power Module FEM Analysis">
           </div>
           <div class="proj-body">
             <div class="proj-type">FEA · Thermo-Mechanical Simulation · Power Electronics</div>
@@ -1198,145 +1177,116 @@
 
         <div class="proj-card reveal">
           <div class="proj-img">
-            <img src="images/driver-state.jpg" alt="Driver State">
+            <img src="images/driver-state.jpg" alt="Driver State Recognition">
+          </div>
+          <div class="proj-body">
+            <div class="proj-type">Autonomous Systems · AI · ROS2</div>
+            <div class="proj-title">Ambiguity-Aware Driver State Recognition</div>
+            <p class="proj-desc">Real-time drowsiness monitoring pipeline combining IR camera, vehicle kinematics, and
+              LLM-based late fusion. Resolves ambiguous states caused by camera occlusion. Trained Random Forest
+              classifiers on PERCLOS, blink rate, EAR, MAR, and steering entropy.</p>
+            <div class="proj-metrics">
+              <div class="metric"><span class="metric-n">0.94</span><span class="metric-l">F1 — camera</span></div>
+              <div class="metric"><span class="metric-n">0.85</span><span class="metric-l">F1 — vehicle</span></div>
+            </div>
+            <div class="proj-tags"><span class="tag">ROS2</span><span class="tag">CARLA</span><span
+                class="tag">Python</span><span class="tag">LLaMA 3.1</span></div>
+            <a href="https://github.com/LloydAlston/Ambiguity---Aware-Driver-State-Recognition-Using-Multimodal-Sensing-and-LLM-Based-Reasoning"
+              target="_blank" class="proj-link">View on GitHub →</a>
+          </div>
+        </div>
 
-            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="30" r="20" stroke="currentColor" stroke-width="1.5" />
-              <circle cx="40" cy="30" r="7" stroke="currentColor" stroke-width="1" />
-              <line x1="10" y1="30" x2="20" y2="30" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2" />
-              <line x1="60" y1="30" x2="70" y2="30" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2" />
-            </svg>
-            <span>Add project image</span>
+        <div class="proj-card reveal">
+          <div class="proj-img">
+            <img src="images/truck-simulink.jpg" alt="Truck Longitudinal Dynamics Simulink">
           </div>
-          <span class="add-note">Replace with image</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-type">Autonomous Systems · AI · ROS2</div>
-          <div class="proj-title">Ambiguity-Aware Driver State Recognition</div>
-          <p class="proj-desc">Real-time drowsiness monitoring pipeline combining IR camera, vehicle kinematics, and
-            LLM-based late fusion. Resolves ambiguous states caused by camera occlusion. Trained Random Forest
-            classifiers on PERCLOS, blink rate, EAR, MAR, and steering entropy.</p>
-          <div class="proj-metrics">
-            <div class="metric"><span class="metric-n">0.94</span><span class="metric-l">F1 — camera</span></div>
-            <div class="metric"><span class="metric-n">0.85</span><span class="metric-l">F1 — vehicle</span></div>
+          <div class="proj-body">
+            <div class="proj-type">Vehicle Dynamics · Simulation</div>
+            <div class="proj-title">Heavy-Duty Truck Longitudinal Dynamics</div>
+            <p class="proj-desc">1D physics model of an 18-tonne truck in MATLAB/Simulink. Characterised powertrain
+              performance across load and gradient scenarios. Designed and tuned PID cruise controller; documented
+              physical traction limit boundary where actuator saturation cannot be overcome by control strategy.</p>
+            <div class="proj-metrics">
+              <div class="metric"><span class="metric-n">38.5%</span><span class="metric-l">Peak traction at 5°
+                  grade</span></div>
+            </div>
+            <div class="proj-tags"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">PID
+                Control</span></div>
+            <a href="https://github.com/LloydAlston/truck-longitudinal-dynamics" target="_blank" class="proj-link">View
+              on GitHub →</a>
           </div>
-          <div class="proj-tags"><span class="tag">ROS2</span><span class="tag">CARLA</span><span
-              class="tag">Python</span><span class="tag">LLaMA 3.1</span></div>
-          <a href="https://github.com/LloydAlston/Ambiguity---Aware-Driver-State-Recognition-Using-Multimodal-Sensing-and-LLM-Based-Reasoning"
-            target="_blank" class="proj-link">View on GitHub →</a>
         </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-img">
+            <img src="images/adas-dashboard.jpg" alt="ADAS Sensor Validation Dashboard">
+          </div>
+          <div class="proj-body">
+            <div class="proj-type">ADAS Validation · Python · ML</div>
+            <div class="proj-title">ADAS Sensor Validation Tool</div>
+            <p class="proj-desc">9-function test catalog covering AEB, ACC, LKA, TSR with weather-conditional sensor
+              confidence modelling. Dual anomaly detection — rule-based thresholds plus IsolationForest across 8 sensor
+              features. Live dashboard aligned to ISO 15622 and ISO 11270.</p>
+            <div class="proj-metrics">
+              <div class="metric"><span class="metric-n">45</span><span class="metric-l">Automated runs</span></div>
+            </div>
+            <div class="proj-tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span
+                class="tag">ISO 15622</span></div>
+            <a href="https://github.com/LloydAlston/adas-sensor-tool" target="_blank" class="proj-link">View on GitHub
+              →</a>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-img">
+            <!-- <img src="images/cad-1.jpg" alt="CAD Model"> -->
+            <div class="proj-placeholder">
+              <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="18" y="12" width="44" height="36" stroke="currentColor" stroke-width="1.5" />
+                <line x1="18" y1="12" x2="8" y2="4" stroke="currentColor" stroke-width="0.8" />
+                <line x1="62" y1="12" x2="72" y2="4" stroke="currentColor" stroke-width="0.8" />
+                <line x1="72" y1="4" x2="8" y2="4" stroke="currentColor" stroke-width="0.8" />
+                <line x1="72" y1="4" x2="72" y2="40" stroke="currentColor" stroke-width="0.8" />
+                <line x1="62" y1="48" x2="72" y2="40" stroke="currentColor" stroke-width="0.8" />
+              </svg>
+              <span>Add your CAD render</span>
+            </div>
+            <span class="add-note">Replace with image</span>
+          </div>
+          <div class="proj-body">
+            <div class="proj-type">3D Modelling · CAD Design</div>
+            <div class="proj-title">Your CAD Project Title</div>
+            <p class="proj-desc">Add your 3D modelling project here. Export renders from CATIA / SolidWorks / Fusion 360
+              as PNG and replace the image above. Describe the design challenge and outcome.</p>
+            <div class="proj-tags"><span class="tag">CATIA V5</span><span class="tag">SolidWorks</span><span
+                class="tag">Fusion 360</span></div>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-img">
+            <!-- <img src="images/cad-2.jpg" alt="CAD Model 2"> -->
+            <div class="proj-placeholder">
+              <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="30" r="22" stroke="currentColor" stroke-width="1.5" />
+                <ellipse cx="40" cy="30" rx="22" ry="8" stroke="currentColor" stroke-width="0.8" />
+                <line x1="40" y1="8" x2="40" y2="52" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" />
+              </svg>
+              <span>Add your CAD render</span>
+            </div>
+            <span class="add-note">Replace with image</span>
+          </div>
+          <div class="proj-body">
+            <div class="proj-type">3D Modelling · CAD Design</div>
+            <div class="proj-title">Your Second CAD Project</div>
+            <p class="proj-desc">Add your second CAD project. Cross-sections, exploded views, or rendered screenshots
+              all work well. Describe what you designed and what constraints you worked within.</p>
+            <div class="proj-tags"><span class="tag">3D Modelling</span><span class="tag">FEA</span><span
+                class="tag">Rendering</span></div>
+          </div>
+        </div>
+
       </div>
-
-      <div class="proj-card reveal">
-        <div class="proj-img">
-          <!-- <img src="images/truck-simulink.jpg" alt="Truck Dynamics"> -->
-          <div class="proj-placeholder">
-            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 42 L8 28 L30 28 L38 14 L68 14 L68 42 Z" stroke="currentColor" stroke-width="1.5" />
-              <circle cx="22" cy="46" r="5" stroke="currentColor" stroke-width="1.2" />
-              <circle cx="54" cy="46" r="5" stroke="currentColor" stroke-width="1.2" />
-            </svg>
-            <span>Add Simulink screenshot</span>
-          </div>
-          <span class="add-note">Replace with image</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-type">Vehicle Dynamics · Simulation</div>
-          <div class="proj-title">Heavy-Duty Truck Longitudinal Dynamics</div>
-          <p class="proj-desc">1D physics model of an 18-tonne truck in MATLAB/Simulink. Characterised powertrain
-            performance across load and gradient scenarios. Designed and tuned PID cruise controller; documented
-            physical traction limit boundary where actuator saturation cannot be overcome by control strategy.</p>
-          <div class="proj-metrics">
-            <div class="metric"><span class="metric-n">38.5%</span><span class="metric-l">Peak traction at 5°
-                grade</span></div>
-          </div>
-          <div class="proj-tags"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">PID
-              Control</span></div>
-          <a href="https://github.com/LloydAlston/truck-longitudinal-dynamics" target="_blank" class="proj-link">View on
-            GitHub →</a>
-        </div>
-      </div>
-
-      <div class="proj-card reveal">
-        <div class="proj-img">
-          <!-- <img src="images/adas-dashboard.jpg" alt="ADAS Tool"> -->
-          <div class="proj-placeholder">
-            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="5" y="8" width="70" height="44" rx="2" stroke="currentColor" stroke-width="1.5" />
-              <rect x="10" y="14" width="28" height="16" stroke="currentColor" stroke-width="0.8" />
-              <rect x="42" y="14" width="28" height="16" stroke="currentColor" stroke-width="0.8" />
-              <rect x="10" y="34" width="60" height="10" stroke="currentColor" stroke-width="0.8" />
-            </svg>
-            <span>Add dashboard screenshot</span>
-          </div>
-          <span class="add-note">Replace with image</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-type">ADAS Validation · Python · ML</div>
-          <div class="proj-title">ADAS Sensor Validation Tool</div>
-          <p class="proj-desc">9-function test catalog covering AEB, ACC, LKA, TSR with weather-conditional sensor
-            confidence modelling. Dual anomaly detection — rule-based thresholds plus IsolationForest across 8 sensor
-            features. Live dashboard aligned to ISO 15622 and ISO 11270.</p>
-          <div class="proj-metrics">
-            <div class="metric"><span class="metric-n">45</span><span class="metric-l">Automated runs</span></div>
-          </div>
-          <div class="proj-tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span
-              class="tag">ISO 15622</span></div>
-          <a href="https://github.com/LloydAlston/adas-sensor-tool" target="_blank" class="proj-link">View on GitHub
-            →</a>
-        </div>
-      </div>
-
-      <div class="proj-card reveal">
-        <div class="proj-img">
-          <!-- <img src="images/cad-1.jpg" alt="CAD Model"> -->
-          <div class="proj-placeholder">
-            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="18" y="12" width="44" height="36" stroke="currentColor" stroke-width="1.5" />
-              <line x1="18" y1="12" x2="8" y2="4" stroke="currentColor" stroke-width="0.8" />
-              <line x1="62" y1="12" x2="72" y2="4" stroke="currentColor" stroke-width="0.8" />
-              <line x1="72" y1="4" x2="8" y2="4" stroke="currentColor" stroke-width="0.8" />
-              <line x1="72" y1="4" x2="72" y2="40" stroke="currentColor" stroke-width="0.8" />
-              <line x1="62" y1="48" x2="72" y2="40" stroke="currentColor" stroke-width="0.8" />
-            </svg>
-            <span>Add your CAD render</span>
-          </div>
-          <span class="add-note">Replace with image</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-type">3D Modelling · CAD Design</div>
-          <div class="proj-title">Your CAD Project Title</div>
-          <p class="proj-desc">Add your 3D modelling project here. Export renders from CATIA / SolidWorks / Fusion 360
-            as PNG and replace the image above. Describe the design challenge and outcome.</p>
-          <div class="proj-tags"><span class="tag">CATIA V5</span><span class="tag">SolidWorks</span><span
-              class="tag">Fusion 360</span></div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal">
-        <div class="proj-img">
-          <!-- <img src="images/cad-2.jpg" alt="CAD Model 2"> -->
-          <div class="proj-placeholder">
-            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="30" r="22" stroke="currentColor" stroke-width="1.5" />
-              <ellipse cx="40" cy="30" rx="22" ry="8" stroke="currentColor" stroke-width="0.8" />
-              <line x1="40" y1="8" x2="40" y2="52" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" />
-            </svg>
-            <span>Add your CAD render</span>
-          </div>
-          <span class="add-note">Replace with image</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-type">3D Modelling · CAD Design</div>
-          <div class="proj-title">Your Second CAD Project</div>
-          <p class="proj-desc">Add your second CAD project. Cross-sections, exploded views, or rendered screenshots all
-            work well. Describe what you designed and what constraints you worked within.</p>
-          <div class="proj-tags"><span class="tag">3D Modelling</span><span class="tag">FEA</span><span
-              class="tag">Rendering</span></div>
-        </div>
-      </div>
-
-    </div>
     </div>
   </section>
 
