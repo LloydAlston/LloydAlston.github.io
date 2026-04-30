@@ -1,651 +1,1653 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lloyd Alston Dsouza — Automotive Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --navy: #1a2332;
-  --red: #b5292a;
-  --gold: #c9922a;
-  --text: #1c1c1e;
-  --text-mid: #4a4a4f;
-  --text-light: #6e6e73;
-  --border: #e0e0e5;
-  --bg: #ffffff;
-  --bg-soft: #f7f7f9;
-  --bg-warm: #faf8f5;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lloyd Alston Dsouza — Automotive Engineer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a2332;
+      --red: #b5292a;
+      --gold: #c9922a;
+      --text: #1c1c1e;
+      --text-mid: #4a4a4f;
+      --text-light: #6e6e73;
+      --border: #e0e0e5;
+      --bg: #ffffff;
+      --bg-soft: #f7f7f9;
+      --bg-warm: #faf8f5;
+    }
 
-/* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--navy); display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; height: 56px; }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; }
-.nav-logo span { color: #e8a53a; }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.6); transition: color 0.2s; }
-.nav-links a:hover { color: #fff; }
-.nav-badge { font-size: 0.68rem; font-weight: 500; border: 1px solid rgba(232,200,100,0.35); color: #e8c87a; padding: 0.28rem 0.7rem; display: flex; align-items: center; gap: 0.4rem; }
-.dot { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; animation: blink 2s infinite; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* HERO */
-.hero { background: var(--navy); padding: 7rem 3rem 5rem; display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: center; }
-.hero-kicker { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #e8a53a; margin-bottom: 1.1rem; display: flex; align-items: center; gap: 0.75rem; }
-.hero-kicker::before { content: ''; width: 28px; height: 1px; background: #e8a53a; }
-.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 700; line-height: 1.1; color: #fff; margin-bottom: 1rem; }
-.hero h1 span { color: #e8a53a; }
-.hero-desc { font-size: 0.95rem; color: rgba(255,255,255,0.55); margin-bottom: 1.8rem; line-height: 1.75; max-width: 520px; }
-.hero-desc strong { color: rgba(255,255,255,0.82); font-weight: 500; }
-.hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-.btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.4rem; font-family: inherit; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: none; transition: all 0.2s; }
-.btn-gold { background: #e8a53a; color: #1a2332; }
-.btn-gold:hover { background: #f0b84a; }
-.btn-ghost { border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.75); background: transparent; }
-.btn-ghost:hover { border-color: rgba(255,255,255,0.55); color: #fff; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-.hero-panel { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1.4rem; }
-.panel-item { padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
-.panel-item:last-child { border-bottom: none; padding-bottom: 0; }
-.panel-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.3rem; }
-.panel-value { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.82); line-height: 1.5; }
-.panel-pill { display: inline-block; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.12rem 0.45rem; margin-top: 0.3rem; background: rgba(232,165,58,0.18); color: #e8a53a; border: 1px solid rgba(232,165,58,0.28); }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* SECTIONS */
-.section { padding: 5rem 3rem; }
-.section-alt { background: var(--bg-soft); }
-.section-warm { background: var(--bg-warm); }
-.max-w { max-width: 1140px; margin: 0 auto; }
-.section-header { margin-bottom: 2.75rem; }
-.section-kicker { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
-h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; color: var(--navy); line-height: 1.2; }
-.section-rule { width: 44px; height: 3px; background: var(--red); margin-top: 0.7rem; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* TIMELINE */
-.timeline { max-width: 840px; }
-.tl-item { display: grid; grid-template-columns: 170px 1fr; gap: 2.5rem; padding: 2.25rem 0; border-bottom: 1px solid var(--border); opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.tl-item.visible { opacity: 1; transform: translateY(0); }
-.tl-item:last-child { border-bottom: none; }
-.tl-date { font-size: 0.76rem; font-weight: 600; color: var(--text-light); line-height: 1.5; margin-bottom: 0.35rem; padding-top: 0.15rem; }
-.tl-org { font-size: 0.7rem; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.07em; }
-.tl-role { font-family: 'Playfair Display', serif; font-size: 1.08rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
-.tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-.tl-bullets li { font-size: 0.88rem; color: var(--text-mid); line-height: 1.78; padding-left: 1rem; position: relative; }
-.tl-bullets li::before { content: ''; position: absolute; left: 0; top: 0.62rem; width: 5px; height: 5px; border-radius: 50%; background: var(--red); }
-.tl-bullets li strong { color: var(--navy); font-weight: 600; }
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 56px;
+    }
 
-/* PROJECTS */
-.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-.proj-card { background: var(--bg); border: 1px solid var(--border); display: flex; flex-direction: column; opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s; }
-.proj-card.visible { opacity: 1; transform: translateY(0); }
-.proj-card:hover { box-shadow: 0 6px 28px rgba(26,35,50,0.09); }
-.proj-card.wide { grid-column: span 3; flex-direction: row; }
-.proj-img { background: var(--bg-soft); border-bottom: 1px solid var(--border); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; flex-shrink: 0; }
-.proj-card.wide .proj-img { aspect-ratio: auto; width: 360px; min-height: 240px; border-bottom: none; border-right: 1px solid var(--border); }
-.proj-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.proj-placeholder { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-light); text-align: center; padding: 1rem; }
-.proj-placeholder svg { width: 44px; opacity: 0.18; }
-.proj-placeholder span { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
-.add-note { position: absolute; bottom: 0.4rem; right: 0.5rem; font-size: 0.52rem; background: rgba(0,0,0,0.05); color: var(--text-light); padding: 0.1rem 0.35rem; letter-spacing: 0.06em; text-transform: uppercase; }
-.proj-body { padding: 1.4rem; display: flex; flex-direction: column; flex: 1; }
-.proj-type { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
-.proj-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.65rem; line-height: 1.35; }
-.proj-desc { font-size: 0.86rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 0.9rem; flex: 1; }
-.proj-metrics { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.9rem; }
-.metric { background: var(--bg-soft); border: 1px solid var(--border); padding: 0.3rem 0.65rem; display: flex; align-items: baseline; gap: 0.3rem; }
-.metric-n { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--red); }
-.metric-l { font-size: 0.62rem; color: var(--text-light); }
-.proj-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
-.tag { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.18rem 0.5rem; border: 1px solid var(--border); color: var(--text-mid); background: var(--bg-soft); }
-.proj-link { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.85rem; font-size: 0.76rem; font-weight: 600; color: var(--red); transition: gap 0.2s; }
-.proj-link:hover { gap: 0.5rem; }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+    }
 
-/* SKILLS */
-.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
-.skill-group-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); padding-bottom: 0.55rem; border-bottom: 2px solid var(--navy); margin-bottom: 1rem; }
-.skill-row { display: flex; justify-content: space-between; align-items: center; padding: 0.48rem 0; border-bottom: 1px solid var(--border); font-size: 0.86rem; color: var(--text-mid); }
-.skill-row:last-child { border-bottom: none; }
-.sdots { display: flex; gap: 3px; }
-.sd { width: 7px; height: 7px; border-radius: 50%; background: var(--border); }
-.sd.on { background: var(--red); }
+    .nav-logo span {
+      color: #e8a53a;
+    }
 
-/* PUBLICATIONS */
-.pub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-.pub-card { border: 1px solid var(--border); padding: 2rem; opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.pub-card.visible { opacity: 1; transform: translateY(0); }
-.pub-badge { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.22rem 0.6rem; margin-bottom: 1rem; }
-.pub-badge.journal { background: var(--red); color: #fff; }
-.pub-badge.patent { background: var(--navy); color: #fff; }
-.pub-title { font-family: 'Playfair Display', serif; font-size: 0.98rem; font-style: italic; color: var(--navy); line-height: 1.55; margin-bottom: 0.7rem; }
-.pub-meta { font-size: 0.82rem; color: var(--text-mid); line-height: 1.8; }
-.pub-meta strong { color: var(--text); font-weight: 600; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
 
-/* ABOUT */
-.about-grid { display: grid; grid-template-columns: 260px 1fr; gap: 4rem; align-items: start; }
-.about-name { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 0.35rem; }
-.about-title { font-size: 0.72rem; font-weight: 700; color: var(--red); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.4rem; }
-.contact-links { display: flex; flex-direction: column; gap: 0.55rem; }
-.contact-link { display: flex; align-items: center; gap: 0.55rem; font-size: 0.82rem; color: var(--text-mid); transition: color 0.2s; }
-.contact-link:hover { color: var(--red); }
-.ci { width: 1.35rem; height: 1.35rem; background: var(--bg-soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.68rem; flex-shrink: 0; }
-.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-top: 1.75rem; }
-.about-stat { background: var(--bg); padding: 0.9rem; text-align: center; }
-.stat-n { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: var(--red); }
-.stat-l { font-size: 0.6rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; }
-.about-bio p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 1.1rem; }
-.about-bio p strong { color: var(--text); font-weight: 600; }
-.edu-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-.edu-item { background: var(--bg); padding: 1.2rem 1.4rem; }
-.edu-degree { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 0.18rem; }
-.edu-school { font-size: 0.76rem; font-weight: 600; color: var(--red); margin-bottom: 0.35rem; }
-.edu-detail { font-size: 0.78rem; color: var(--text-mid); line-height: 1.7; }
-.edu-detail .gpa { color: var(--gold); font-weight: 600; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      transition: color 0.2s;
+    }
 
-/* CTA */
-.cta-strip { background: var(--navy); padding: 4rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
-.cta-strip h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.2rem); color: #fff; font-weight: 700; line-height: 1.2; }
-.cta-strip p { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-top: 0.35rem; }
-.cta-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .nav-links a:hover {
+      color: #fff;
+    }
 
-/* FOOTER */
-footer { background: #111820; padding: 1.4rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; font-size: 0.72rem; color: rgba(255,255,255,0.28); letter-spacing: 0.05em; }
+    .nav-badge {
+      font-size: 0.68rem;
+      font-weight: 500;
+      border: 1px solid rgba(232, 200, 100, 0.35);
+      color: #e8c87a;
+      padding: 0.28rem 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
 
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: blink 2s infinite;
+    }
 
-/* RESPONSIVE */
-@media (max-width: 1000px) {
-  .projects-grid { grid-template-columns: 1fr 1fr; }
-  .proj-card.wide { grid-column: span 2; }
-}
-@media (max-width: 768px) {
-  nav { padding: 0 1.25rem; }
-  .nav-links, .nav-badge { display: none; }
-  .hero { grid-template-columns: 1fr; padding: 6rem 1.25rem 3rem; }
-  .hero-panel { display: none; }
-  .section { padding: 3.5rem 1.25rem; }
-  .tl-item { grid-template-columns: 1fr; gap: 0.4rem; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .proj-card.wide { flex-direction: column; grid-column: span 1; }
-  .proj-card.wide .proj-img { width: 100%; min-height: auto; border-right: none; border-bottom: 1px solid var(--border); }
-  .skills-grid { grid-template-columns: 1fr 1fr; }
-  .pub-grid { grid-template-columns: 1fr; }
-  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .cta-strip { flex-direction: column; padding: 3rem 1.25rem; }
-  footer { padding: 1.25rem; flex-direction: column; align-items: flex-start; }
-}
-@media (max-width: 520px) { .skills-grid { grid-template-columns: 1fr; } }
-</style>
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.3
+      }
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--navy);
+      padding: 7rem 3rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #e8a53a;
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-kicker::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: #e8a53a;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: #e8a53a;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 1.8rem;
+      line-height: 1.75;
+      max-width: 520px;
+    }
+
+    .hero-desc strong {
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 500;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.4rem;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-gold {
+      background: #e8a53a;
+      color: #1a2332;
+    }
+
+    .btn-gold:hover {
+      background: #f0b84a;
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: rgba(255, 255, 255, 0.75);
+      background: transparent;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255, 255, 255, 0.55);
+      color: #fff;
+    }
+
+    .hero-panel {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.4rem;
+    }
+
+    .panel-item {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .panel-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .panel-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 0.3rem;
+    }
+
+    .panel-value {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.5;
+    }
+
+    .panel-pill {
+      display: inline-block;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.12rem 0.45rem;
+      margin-top: 0.3rem;
+      background: rgba(232, 165, 58, 0.18);
+      color: #e8a53a;
+      border: 1px solid rgba(232, 165, 58, 0.28);
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 5rem 3rem;
+    }
+
+    .section-alt {
+      background: var(--bg-soft);
+    }
+
+    .section-warm {
+      background: var(--bg-warm);
+    }
+
+    .max-w {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 2.75rem;
+    }
+
+    .section-kicker {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.4rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .section-rule {
+      width: 44px;
+      height: 3px;
+      background: var(--red);
+      margin-top: 0.7rem;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      max-width: 840px;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 2.5rem;
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .tl-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tl-item:last-child {
+      border-bottom: none;
+    }
+
+    .tl-date {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-light);
+      line-height: 1.5;
+      margin-bottom: 0.35rem;
+      padding-top: 0.15rem;
+    }
+
+    .tl-org {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .tl-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .tl-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .tl-bullets li {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.78;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .tl-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.62rem;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .tl-bullets li strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .proj-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s;
+    }
+
+    .proj-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .proj-card:hover {
+      box-shadow: 0 6px 28px rgba(26, 35, 50, 0.09);
+    }
+
+    .proj-card.wide {
+      grid-column: span 3;
+      flex-direction: row;
+    }
+
+    .proj-img {
+      background: var(--bg-soft);
+      border-bottom: 1px solid var(--border);
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .proj-card.wide .proj-img {
+      aspect-ratio: auto;
+      width: 360px;
+      min-height: 240px;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+    }
+
+    .proj-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .proj-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .proj-placeholder svg {
+      width: 44px;
+      opacity: 0.18;
+    }
+
+    .proj-placeholder span {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .add-note {
+      position: absolute;
+      bottom: 0.4rem;
+      right: 0.5rem;
+      font-size: 0.52rem;
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-light);
+      padding: 0.1rem 0.35rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .proj-body {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .proj-type {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.4rem;
+    }
+
+    .proj-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.65rem;
+      line-height: 1.35;
+    }
+
+    .proj-desc {
+      font-size: 0.86rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
+      flex: 1;
+    }
+
+    .proj-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .metric {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.65rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+    }
+
+    .metric-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    .metric-l {
+      font-size: 0.62rem;
+      color: var(--text-light);
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .tag {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.5rem;
+      border: 1px solid var(--border);
+      color: var(--text-mid);
+      background: var(--bg-soft);
+    }
+
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.85rem;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--red);
+      transition: gap 0.2s;
+    }
+
+    .proj-link:hover {
+      gap: 0.5rem;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .skill-group-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      padding-bottom: 0.55rem;
+      border-bottom: 2px solid var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .skill-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.48rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.86rem;
+      color: var(--text-mid);
+    }
+
+    .skill-row:last-child {
+      border-bottom: none;
+    }
+
+    .sdots {
+      display: flex;
+      gap: 3px;
+    }
+
+    .sd {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .sd.on {
+      background: var(--red);
+    }
+
+    /* PUBLICATIONS */
+    .pub-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .pub-card {
+      border: 1px solid var(--border);
+      padding: 2rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .pub-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pub-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .pub-badge.journal {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .pub-badge.patent {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .pub-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem;
+      font-style: italic;
+      color: var(--navy);
+      line-height: 1.55;
+      margin-bottom: 0.7rem;
+    }
+
+    .pub-meta {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    .pub-meta strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+
+    .about-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover {
+      color: var(--red);
+    }
+
+    .ci {
+      width: 1.35rem;
+      height: 1.35rem;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      flex-shrink: 0;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin-top: 1.75rem;
+    }
+
+    .about-stat {
+      background: var(--bg);
+      padding: 0.9rem;
+      text-align: center;
+    }
+
+    .stat-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    .stat-l {
+      font-size: 0.6rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .about-bio p {
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+
+    .about-bio p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .edu-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .edu-item {
+      background: var(--bg);
+      padding: 1.2rem 1.4rem;
+    }
+
+    .edu-degree {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.18rem;
+    }
+
+    .edu-school {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--red);
+      margin-bottom: 0.35rem;
+    }
+
+    .edu-detail {
+      font-size: 0.78rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    .edu-detail .gpa {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* CTA */
+    .cta-strip {
+      background: var(--navy);
+      padding: 4rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .cta-strip h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .cta-strip p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.45);
+      margin-top: 0.35rem;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111820;
+      padding: 1.4rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.28);
+      letter-spacing: 0.05em;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1000px) {
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .proj-card.wide {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 1.25rem;
+      }
+
+      .nav-links,
+      .nav-badge {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 6rem 1.25rem 3rem;
+      }
+
+      .hero-panel {
+        display: none;
+      }
+
+      .section {
+        padding: 3.5rem 1.25rem;
+      }
+
+      .tl-item {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .proj-card.wide {
+        flex-direction: column;
+        grid-column: span 1;
+      }
+
+      .proj-card.wide .proj-img {
+        width: 100%;
+        min-height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .pub-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .cta-strip {
+        flex-direction: column;
+        padding: 3rem 1.25rem;
+      }
+
+      footer {
+        padding: 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Lloyd Alston <span>Dsouza</span></div>
-  <ul class="nav-links">
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#publications">Research</a></li>
-    <li><a href="#about">About</a></li>
-  </ul>
-  <div class="nav-badge"><span class="dot"></span> Open to Werkstudent · Praktikum</div>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Lloyd Alston <span>Dsouza</span></div>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#publications">Research</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <div class="nav-badge"><span class="dot"></span> Open to Werkstudent · Praktikum</div>
+  </nav>
 
-<!-- HERO -->
-<header class="hero">
-  <div>
-    <div class="hero-kicker">Automotive Engineer · Ingolstadt, Germany</div>
-    <h1>Lloyd Alston<br><span>Dsouza</span></h1>
-    <p class="hero-desc">
-      <strong>M.Eng. International Automotive Engineering</strong> at THI Ingolstadt,
-      specialising in Vehicle Safety. Working across mechanical design, FEA simulation,
-      ADAS validation, and autonomous vehicle hardware — from SiC power module analysis
-      to electromechanical actuator fabrication.
-    </p>
-    <div class="hero-btns">
-      <a href="#projects" class="btn btn-gold">View Projects</a>
+  <!-- HERO -->
+  <header class="hero">
+    <div>
+      <div class="hero-kicker">Automotive Engineer · Ingolstadt, Germany</div>
+      <h1>Lloyd Alston<br><span>Dsouza</span></h1>
+      <p class="hero-desc">
+        <strong>M.Eng. International Automotive Engineering</strong> at THI Ingolstadt,
+        specialising in Vehicle Safety. Working across mechanical design, FEA simulation,
+        ADAS validation, and autonomous vehicle hardware — from SiC power module analysis
+        to electromechanical actuator fabrication.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-gold">View Projects</a>
+        <a href="https://linkedin.com/in/lloydalstondsouza" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+        <a href="https://github.com/LloydAlston" target="_blank" class="btn btn-ghost">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="panel-item">
+        <div class="panel-label">Current Programme</div>
+        <div class="panel-value">M.Eng. International Automotive Engineering · THI Ingolstadt</div>
+        <div class="panel-pill">Ongoing</div>
+      </div>
+      <div class="panel-item">
+        <div class="panel-label">Specialisation</div>
+        <div class="panel-value">Vehicle Safety</div>
+      </div>
+      <div class="panel-item">
+        <div class="panel-label">Location &amp; Permit</div>
+        <div class="panel-value">Ingolstadt, Germany · Residence Permit → Feb 2028</div>
+      </div>
+      <div class="panel-item">
+        <div class="panel-label">Research Output</div>
+        <div class="panel-value">1 Journal Publication · 1 Patent Pending</div>
+        <div class="panel-pill">Verified</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section section-alt">
+    <div class="max-w">
+      <div class="section-header reveal">
+        <div class="section-kicker">01 — Experience</div>
+        <h2>Work &amp; Research</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div>
+            <div class="tl-date">Sep 2024 – Feb 2025</div>
+            <div class="tl-org">NIT Karnataka</div>
+          </div>
+          <div>
+            <div class="tl-role">Junior Research Fellow</div>
+            <ul class="tl-bullets">
+              <li><strong>Steering Actuator — System Design:</strong> Designed the complete electromechanical steering
+                actuator assembly for a Mahindra REVA autonomous campus shuttle. Defined system architecture: NEMA-23
+                bipolar stepper motor (45 kgcm holding torque), 1:3 spur gear reduction delivering 11 Nm at the steering
+                column, and custom-fabricated mild steel enclosure (242×174×128 mm, IP65 rated).</li>
+              <li><strong>Component Selection &amp; BOM:</strong> Specified and sourced all hardware — DM860H
+                microstepping driver (7.2A, 24–110V), STM32 NUCLEO-G474RE controller, incremental rotary encoder (1000
+                PPR, 0.09° resolution), TJA1051 CAN transceiver, Deutsch DT series waterproof connectors, and 6204-2RS
+                sealed bearings. Assembled and verified 22 AWG shielded automotive-grade wiring harness.</li>
+              <li><strong>PID Control Implementation:</strong> Implemented closed-loop angular position control in
+                Arduino/C++. Tuned PID gains with acceleration limiting for smooth directional response; encoder
+                feedback at 4000 counts/revolution. Validated steering angle tracking before integration handoff.</li>
+              <li><strong>Electrical Integration:</strong> Wired motor, driver, encoder, and STM32. Established CAN 2.0B
+                communication at 1 Mbps with 120Ω termination. Configured microstepping at 1600 steps/rev; verified
+                startup diagnostics and encoder direction alignment.</li>
+              <li><strong>Structural Analysis &amp; Fabrication:</strong> Performed ANSYS structural analysis to verify
+                enclosure and mounting integrity. Coordinated chassis modifications and component fitment on the REVA
+                platform including differential drive hardware and swing arm integration.</li>
+              <li><strong>Testing &amp; Documentation:</strong> Conducted hardware-in-the-loop (HIL) validation of
+                steering response. Documented full assembly procedure, torque specifications, and calibration steps.
+                Verified encoder shaft concentricity within 0.05 mm and mechanical clearances throughout.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div>
+            <div class="tl-date">Jun 2024 – Sep 2024</div>
+            <div class="tl-org">NIT Karnataka</div>
+          </div>
+          <div>
+            <div class="tl-role">Research Volunteer</div>
+            <ul class="tl-bullets">
+              <li><strong>Wheelchair Frame Design:</strong> Designed a prototype electric wheelchair for persons with
+                disabilities (PwD) under Boeing grants. Developed a self-locking frame mechanism and universal frame
+                geometry to improve stability and adaptability across user requirements.</li>
+              <li><strong>Mechanical &amp; Electrical Build:</strong> Fabricated the frame and integrated mechanical,
+                electrical, and GPS tracking subsystems from scratch. Wired motor drive and safety mechanisms
+                throughout.</li>
+              <li><strong>Iterative Prototyping:</strong> Used 3D printing and laser cutting for rapid iteration of
+                frame components; resolved stability issues through multiple geometry revisions. Conducted kinematic and
+                dynamic analysis to validate manoeuvrability improvements between iterations.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div>
+            <div class="tl-date">Jun 2023 – Aug 2023</div>
+            <div class="tl-org">NIT Karnataka</div>
+          </div>
+          <div>
+            <div class="tl-role">Engineering Intern</div>
+            <ul class="tl-bullets">
+              <li><strong>EV Buggy Conversion:</strong> Converted a Mahindra REVA chassis into a functional electric
+                vehicle test buggy. Executed chassis modifications — cut and reinforced the frame, modified swing arms,
+                and integrated a new electric drive differential with controller, battery, and electronics.</li>
+              <li><strong>Fabrication &amp; Assembly:</strong> Fabricated custom footrests to specification; verified
+                all mechanical clearances and electrical connections to complete a running prototype used for subsequent
+                autonomous systems development.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div>
+            <div class="tl-date">Jul 2022</div>
+            <div class="tl-org">Royal Enfield CoE</div>
+          </div>
+          <div>
+            <div class="tl-role">Engineering Intern — Royal Enfield Centre of Excellence, Silver Oak University</div>
+            <ul class="tl-bullets">
+              <li><strong>Engine Servicing:</strong> Diagnosed and resolved faults on UCE and parallel-twin engines
+                across BS3, BS4, and BS6 variants. Performed full overhauls including timing adjustments, carburettor
+                servicing, brake system maintenance, and electrical fault tracing.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="max-w">
+      <div class="section-header reveal">
+        <div class="section-kicker">02 — Projects</div>
+        <h2>Selected Work</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="projects-grid">
+
+        <div class="proj-card wide reveal">
+          <div class="proj-img">
+            <!-- <img src="images/steering-assembly.jpg" alt="Steering Actuator"> -->
+            <div class="proj-placeholder">
+              <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="5" width="70" height="50" rx="2" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="40" cy="30" r="15" stroke="currentColor" stroke-width="1.2" />
+                <circle cx="40" cy="30" r="5" stroke="currentColor" stroke-width="1" />
+                <rect x="12" y="18" width="12" height="24" rx="1" stroke="currentColor" stroke-width="0.8" />
+                <rect x="56" y="18" width="12" height="24" rx="1" stroke="currentColor" stroke-width="0.8" />
+              </svg>
+              <span>Add assembly photo</span>
+            </div>
+            <span class="add-note">Replace with image</span>
+          </div>
+          <div class="proj-body">
+            <div class="proj-type">Mechanical Design · Embedded Systems · Autonomous Vehicles</div>
+            <div class="proj-title">Electromechanical Steering Actuator — Autonomous Vehicle Platform</div>
+            <p class="proj-desc">Designed and built a precision steering actuator for the Mahindra REVA autonomous
+              campus shuttle at NIT Karnataka. Full system design from component selection and CAD through to
+              fabrication, wiring, PID tuning, and hardware-in-the-loop validation. Closed-loop position control via
+              encoder feedback; communicates with the vehicle autonomy platform over CAN 2.0B at 1 Mbps.</p>
+            <div class="proj-metrics">
+              <div class="metric"><span class="metric-n">11 Nm</span><span class="metric-l">Output torque (1:3
+                  gear)</span></div>
+              <div class="metric"><span class="metric-n">0.09°</span><span class="metric-l">Angular resolution</span>
+              </div>
+              <div class="metric"><span class="metric-n">&lt;50 ms</span><span class="metric-l">Steering response</span>
+              </div>
+              <div class="metric"><span class="metric-n">IP65</span><span class="metric-l">Enclosure rating</span></div>
+            </div>
+            <div class="proj-tags">
+              <span class="tag">SolidWorks</span><span class="tag">ANSYS FEA</span><span class="tag">STM32</span>
+              <span class="tag">Arduino / C++</span><span class="tag">CAN Bus</span><span class="tag">PID
+                Control</span><span class="tag">Fabrication</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card wide reveal">
+          <div class="proj-img">
+            <!-- <img src="images/sic-ansys.jpg" alt="SiC FEM"> -->
+            <div class="proj-placeholder">
+              <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="8" width="70" height="44" rx="2" stroke="currentColor" stroke-width="1.5" />
+                <rect x="14" y="16" width="18" height="12" stroke="currentColor" stroke-width="1" />
+                <rect x="40" y="16" width="18" height="12" stroke="currentColor" stroke-width="1" />
+                <line x1="5" y1="36" x2="75" y2="36" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3 2" />
+              </svg>
+              <span>Add ANSYS render</span>
+            </div>
+            <span class="add-note">Replace with image</span>
+          </div>
+          <div class="proj-body">
+            <div class="proj-type">FEA · Thermo-Mechanical Simulation · Power Electronics</div>
+            <div class="proj-title">Patterned Die-Attach Layer for SiC Power Module Reliability</div>
+            <p class="proj-desc">Component-level thermo-mechanical failure analysis for SiC power modules in electric
+              vehicle applications. Identified die-attach interface stress concentration as the primary failure mode.
+              Conducted a structured FEM study in ANSYS Workbench across multiple geometry variants to characterise
+              stress distribution. Used OptiSLang parameter optimisation to evaluate patterned die-attach configurations
+              and document design recommendations.</p>
+            <div class="proj-tags">
+              <span class="tag">ANSYS Workbench</span><span class="tag">OptiSLang</span><span class="tag">FEM /
+                FEA</span>
+              <span class="tag">SiC Power Electronics</span><span class="tag">Thermal Analysis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-img">
+            <img src="images/driver-state.jpg" alt="Driver State">
+
+            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="30" r="20" stroke="currentColor" stroke-width="1.5" />
+              <circle cx="40" cy="30" r="7" stroke="currentColor" stroke-width="1" />
+              <line x1="10" y1="30" x2="20" y2="30" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2" />
+              <line x1="60" y1="30" x2="70" y2="30" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2" />
+            </svg>
+            <span>Add project image</span>
+          </div>
+          <span class="add-note">Replace with image</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">Autonomous Systems · AI · ROS2</div>
+          <div class="proj-title">Ambiguity-Aware Driver State Recognition</div>
+          <p class="proj-desc">Real-time drowsiness monitoring pipeline combining IR camera, vehicle kinematics, and
+            LLM-based late fusion. Resolves ambiguous states caused by camera occlusion. Trained Random Forest
+            classifiers on PERCLOS, blink rate, EAR, MAR, and steering entropy.</p>
+          <div class="proj-metrics">
+            <div class="metric"><span class="metric-n">0.94</span><span class="metric-l">F1 — camera</span></div>
+            <div class="metric"><span class="metric-n">0.85</span><span class="metric-l">F1 — vehicle</span></div>
+          </div>
+          <div class="proj-tags"><span class="tag">ROS2</span><span class="tag">CARLA</span><span
+              class="tag">Python</span><span class="tag">LLaMA 3.1</span></div>
+          <a href="https://github.com/LloydAlston/Ambiguity---Aware-Driver-State-Recognition-Using-Multimodal-Sensing-and-LLM-Based-Reasoning"
+            target="_blank" class="proj-link">View on GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <!-- <img src="images/truck-simulink.jpg" alt="Truck Dynamics"> -->
+          <div class="proj-placeholder">
+            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 42 L8 28 L30 28 L38 14 L68 14 L68 42 Z" stroke="currentColor" stroke-width="1.5" />
+              <circle cx="22" cy="46" r="5" stroke="currentColor" stroke-width="1.2" />
+              <circle cx="54" cy="46" r="5" stroke="currentColor" stroke-width="1.2" />
+            </svg>
+            <span>Add Simulink screenshot</span>
+          </div>
+          <span class="add-note">Replace with image</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">Vehicle Dynamics · Simulation</div>
+          <div class="proj-title">Heavy-Duty Truck Longitudinal Dynamics</div>
+          <p class="proj-desc">1D physics model of an 18-tonne truck in MATLAB/Simulink. Characterised powertrain
+            performance across load and gradient scenarios. Designed and tuned PID cruise controller; documented
+            physical traction limit boundary where actuator saturation cannot be overcome by control strategy.</p>
+          <div class="proj-metrics">
+            <div class="metric"><span class="metric-n">38.5%</span><span class="metric-l">Peak traction at 5°
+                grade</span></div>
+          </div>
+          <div class="proj-tags"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">PID
+              Control</span></div>
+          <a href="https://github.com/LloydAlston/truck-longitudinal-dynamics" target="_blank" class="proj-link">View on
+            GitHub →</a>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <!-- <img src="images/adas-dashboard.jpg" alt="ADAS Tool"> -->
+          <div class="proj-placeholder">
+            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="8" width="70" height="44" rx="2" stroke="currentColor" stroke-width="1.5" />
+              <rect x="10" y="14" width="28" height="16" stroke="currentColor" stroke-width="0.8" />
+              <rect x="42" y="14" width="28" height="16" stroke="currentColor" stroke-width="0.8" />
+              <rect x="10" y="34" width="60" height="10" stroke="currentColor" stroke-width="0.8" />
+            </svg>
+            <span>Add dashboard screenshot</span>
+          </div>
+          <span class="add-note">Replace with image</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">ADAS Validation · Python · ML</div>
+          <div class="proj-title">ADAS Sensor Validation Tool</div>
+          <p class="proj-desc">9-function test catalog covering AEB, ACC, LKA, TSR with weather-conditional sensor
+            confidence modelling. Dual anomaly detection — rule-based thresholds plus IsolationForest across 8 sensor
+            features. Live dashboard aligned to ISO 15622 and ISO 11270.</p>
+          <div class="proj-metrics">
+            <div class="metric"><span class="metric-n">45</span><span class="metric-l">Automated runs</span></div>
+          </div>
+          <div class="proj-tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span
+              class="tag">ISO 15622</span></div>
+          <a href="https://github.com/LloydAlston/adas-sensor-tool" target="_blank" class="proj-link">View on GitHub
+            →</a>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <!-- <img src="images/cad-1.jpg" alt="CAD Model"> -->
+          <div class="proj-placeholder">
+            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="18" y="12" width="44" height="36" stroke="currentColor" stroke-width="1.5" />
+              <line x1="18" y1="12" x2="8" y2="4" stroke="currentColor" stroke-width="0.8" />
+              <line x1="62" y1="12" x2="72" y2="4" stroke="currentColor" stroke-width="0.8" />
+              <line x1="72" y1="4" x2="8" y2="4" stroke="currentColor" stroke-width="0.8" />
+              <line x1="72" y1="4" x2="72" y2="40" stroke="currentColor" stroke-width="0.8" />
+              <line x1="62" y1="48" x2="72" y2="40" stroke="currentColor" stroke-width="0.8" />
+            </svg>
+            <span>Add your CAD render</span>
+          </div>
+          <span class="add-note">Replace with image</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">3D Modelling · CAD Design</div>
+          <div class="proj-title">Your CAD Project Title</div>
+          <p class="proj-desc">Add your 3D modelling project here. Export renders from CATIA / SolidWorks / Fusion 360
+            as PNG and replace the image above. Describe the design challenge and outcome.</p>
+          <div class="proj-tags"><span class="tag">CATIA V5</span><span class="tag">SolidWorks</span><span
+              class="tag">Fusion 360</span></div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <!-- <img src="images/cad-2.jpg" alt="CAD Model 2"> -->
+          <div class="proj-placeholder">
+            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="30" r="22" stroke="currentColor" stroke-width="1.5" />
+              <ellipse cx="40" cy="30" rx="22" ry="8" stroke="currentColor" stroke-width="0.8" />
+              <line x1="40" y1="8" x2="40" y2="52" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" />
+            </svg>
+            <span>Add your CAD render</span>
+          </div>
+          <span class="add-note">Replace with image</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">3D Modelling · CAD Design</div>
+          <div class="proj-title">Your Second CAD Project</div>
+          <p class="proj-desc">Add your second CAD project. Cross-sections, exploded views, or rendered screenshots all
+            work well. Describe what you designed and what constraints you worked within.</p>
+          <div class="proj-tags"><span class="tag">3D Modelling</span><span class="tag">FEA</span><span
+              class="tag">Rendering</span></div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section section-warm">
+    <div class="max-w">
+      <div class="section-header reveal">
+        <div class="section-kicker">03 — Skills</div>
+        <h2>Technical Capabilities</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="reveal">
+          <div class="skill-group-title">CAD &amp; FEM</div>
+          <div class="skill-row"><span>ANSYS Workbench</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>CATIA V5</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>SolidWorks</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>Fusion 360</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>Creo</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>OptiSLang</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="skill-group-title">Simulation &amp; Dynamics</div>
+          <div class="skill-row"><span>MATLAB</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>Simulink</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>CARLA Simulator</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>Vehicle Dynamics</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>FEM / FEA</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="skill-group-title">Programming &amp; Tools</div>
+          <div class="skill-row"><span>Python</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>ROS2</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>Arduino / C++</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>Git / Linux</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>LaTeX</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+          <div class="skill-row"><span>3D Printing · Laser Cutting</span>
+            <div class="sdots">
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd on"></div>
+              <div class="sd"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications" class="section section-alt">
+    <div class="max-w">
+      <div class="section-header reveal">
+        <div class="section-kicker">04 — Research</div>
+        <h2>Publications &amp; Patents</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="pub-grid">
+        <div class="pub-card reveal">
+          <span class="pub-badge journal">Journal Publication — 2025</span>
+          <div class="pub-title">Comparative Analysis of Surface Roughness and Tool Wear under Dry, MQL, and Cryogenic
+            Machining Conditions in Invar 36 Turning Operations</div>
+          <div class="pub-meta">
+            <strong>Lloyd Alston Dsouza et al.</strong><br>
+            Journal of Mines, Metals and Fuels, Vol. 73(4), pp. 1097–1105, 2025<br><br>
+            Comparative study of dry, MQL, and cryogenic machining for Invar 36 turning. Measured surface roughness and
+            tool wear using calibrated instruments; identified MQL as optimal process condition for balancing surface
+            quality and tool life.
+          </div>
+        </div>
+        <div class="pub-card reveal">
+          <span class="pub-badge patent">Patent — Grant Pending</span>
+          <div class="pub-title">Minimum Quantity Lubrication System With Integrated Air Brush Technology</div>
+          <div class="pub-meta">
+            <strong>Co-inventor: Lloyd Alston Dsouza et al.</strong><br>
+            Application No. 202441075224 A · Published: 11 October 2024<br><br>
+            Co-invented a novel MQL delivery system integrating air-brush technology for precision lubrication in
+            machining applications. Patent published; grant decision pending.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="max-w">
+      <div class="section-header reveal">
+        <div class="section-kicker">05 — About</div>
+        <h2>Background</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <div class="about-name">Lloyd Alston Dsouza</div>
+          <div class="about-title">Automotive Engineer</div>
+          <div class="contact-links">
+            <a href="mailto:lloydalston101@gmail.com" class="contact-link"><span class="ci">✉</span>
+              lloydalston101@gmail.com</a>
+            <a href="tel:+4915510833958" class="contact-link"><span class="ci">☎</span> +49 155 1083 3958</a>
+            <a href="https://linkedin.com/in/lloydalstondsouza" target="_blank" class="contact-link"><span
+                class="ci">in</span> linkedin.com/in/lloydalstondsouza</a>
+            <a href="https://github.com/LloydAlston" target="_blank" class="contact-link"><span class="ci">⌥</span>
+              github.com/LloydAlston</a>
+          </div>
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="stat-n">1</div>
+              <div class="stat-l">Journal Paper</div>
+            </div>
+            <div class="about-stat">
+              <div class="stat-n">1</div>
+              <div class="stat-l">Patent Pending</div>
+            </div>
+            <div class="about-stat">
+              <div class="stat-n">2.1</div>
+              <div class="stat-l">GPA (DE scale)</div>
+            </div>
+            <div class="about-stat">
+              <div class="stat-n">4+</div>
+              <div class="stat-l">Projects</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="about-bio">
+            <p>I'm a <strong>Master's student in International Automotive Engineering</strong> at Technische Hochschule
+              Ingolstadt, specialising in Vehicle Safety. My engineering background spans the full product development
+              cycle — from mechanical design and fabrication to FEA simulation and embedded control.</p>
+            <p>My hands-on experience includes designing and building the <strong>electromechanical steering
+                actuator</strong> for an autonomous vehicle platform at NIT Karnataka — from component selection and CAD
+              through to wiring, PID tuning, and HIL validation. On the simulation side I have worked on
+              <strong>thermo-mechanical FEA of SiC power modules</strong> in ANSYS and vehicle dynamics modelling in
+              MATLAB/Simulink.</p>
+            <p>I hold a <strong>published journal paper</strong> and a <strong>co-invented patent pending
+                grant</strong>. I am looking for Werkstudent or Praktikum roles in Germany in vehicle safety, ADAS,
+              powertrain, or mechanical development.</p>
+          </div>
+          <div class="edu-list">
+            <div class="edu-item">
+              <div class="edu-degree">M.Eng. International Automotive Engineering</div>
+              <div class="edu-school">Technische Hochschule Ingolstadt · March 2025 – Ongoing</div>
+              <div class="edu-detail">Specialisation: Vehicle Safety &nbsp;·&nbsp; <span class="gpa">GPA 2.1 (German
+                  scale — 1.0 is best)</span><br>Modules: Vehicle Dynamics, ADAS &amp; Safety Systems, Sensor
+                Technology, Mathematical Modelling, CAx-Techniques, Power Train</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-degree">B.Eng. Mechanical Engineering</div>
+              <div class="edu-school">N.M.A.M. Institute of Technology, Karnataka · Dec 2020 – May 2024</div>
+              <div class="edu-detail"><span class="gpa">CGPA: 8.56 / 10</span><br>Modules: FEM, Mechatronics, Control
+                Engineering, Manufacturing Technology, CAD, Automotive Engineering</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <div>
+      <h3>Open to Roles in Germany</h3>
+      <p>Werkstudent · Praktikum · Thesis — Vehicle Safety, ADAS, Powertrain, Mechanical Development</p>
+    </div>
+    <div class="cta-btns">
+      <a href="mailto:lloydalston101@gmail.com" class="btn btn-gold">Send Email</a>
       <a href="https://linkedin.com/in/lloydalstondsouza" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
-      <a href="https://github.com/LloydAlston" target="_blank" class="btn btn-ghost">GitHub ↗</a>
     </div>
   </div>
-  <div class="hero-panel">
-    <div class="panel-item">
-      <div class="panel-label">Current Programme</div>
-      <div class="panel-value">M.Eng. International Automotive Engineering · THI Ingolstadt</div>
-      <div class="panel-pill">Ongoing</div>
-    </div>
-    <div class="panel-item">
-      <div class="panel-label">Specialisation</div>
-      <div class="panel-value">Vehicle Safety</div>
-    </div>
-    <div class="panel-item">
-      <div class="panel-label">Location &amp; Permit</div>
-      <div class="panel-value">Ingolstadt, Germany · Residence Permit → Feb 2028</div>
-    </div>
-    <div class="panel-item">
-      <div class="panel-label">Research Output</div>
-      <div class="panel-value">1 Journal Publication · 1 Patent Pending</div>
-      <div class="panel-pill">Verified</div>
-    </div>
-  </div>
-</header>
 
-<!-- EXPERIENCE -->
-<section id="experience" class="section section-alt">
-<div class="max-w">
-  <div class="section-header reveal">
-    <div class="section-kicker">01 — Experience</div>
-    <h2>Work &amp; Research</h2>
-    <div class="section-rule"></div>
-  </div>
-  <div class="timeline">
+  <footer>
+    <span>Lloyd Alston Dsouza · Ingolstadt, Germany</span>
+    <span>lloydAlston.github.io</span>
+    <span>Residence Permit valid until Feb 2028</span>
+  </footer>
 
-    <div class="tl-item">
-      <div>
-        <div class="tl-date">Sep 2024 – Feb 2025</div>
-        <div class="tl-org">NIT Karnataka</div>
-      </div>
-      <div>
-        <div class="tl-role">Junior Research Fellow</div>
-        <ul class="tl-bullets">
-          <li><strong>Steering Actuator — System Design:</strong> Designed the complete electromechanical steering actuator assembly for a Mahindra REVA autonomous campus shuttle. Defined system architecture: NEMA-23 bipolar stepper motor (45 kgcm holding torque), 1:3 spur gear reduction delivering 11 Nm at the steering column, and custom-fabricated mild steel enclosure (242×174×128 mm, IP65 rated).</li>
-          <li><strong>Component Selection &amp; BOM:</strong> Specified and sourced all hardware — DM860H microstepping driver (7.2A, 24–110V), STM32 NUCLEO-G474RE controller, incremental rotary encoder (1000 PPR, 0.09° resolution), TJA1051 CAN transceiver, Deutsch DT series waterproof connectors, and 6204-2RS sealed bearings. Assembled and verified 22 AWG shielded automotive-grade wiring harness.</li>
-          <li><strong>PID Control Implementation:</strong> Implemented closed-loop angular position control in Arduino/C++. Tuned PID gains with acceleration limiting for smooth directional response; encoder feedback at 4000 counts/revolution. Validated steering angle tracking before integration handoff.</li>
-          <li><strong>Electrical Integration:</strong> Wired motor, driver, encoder, and STM32. Established CAN 2.0B communication at 1 Mbps with 120Ω termination. Configured microstepping at 1600 steps/rev; verified startup diagnostics and encoder direction alignment.</li>
-          <li><strong>Structural Analysis &amp; Fabrication:</strong> Performed ANSYS structural analysis to verify enclosure and mounting integrity. Coordinated chassis modifications and component fitment on the REVA platform including differential drive hardware and swing arm integration.</li>
-          <li><strong>Testing &amp; Documentation:</strong> Conducted hardware-in-the-loop (HIL) validation of steering response. Documented full assembly procedure, torque specifications, and calibration steps. Verified encoder shaft concentricity within 0.05 mm and mechanical clearances throughout.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div>
-        <div class="tl-date">Jun 2024 – Sep 2024</div>
-        <div class="tl-org">NIT Karnataka</div>
-      </div>
-      <div>
-        <div class="tl-role">Research Volunteer</div>
-        <ul class="tl-bullets">
-          <li><strong>Wheelchair Frame Design:</strong> Designed a prototype electric wheelchair for persons with disabilities (PwD) under Boeing grants. Developed a self-locking frame mechanism and universal frame geometry to improve stability and adaptability across user requirements.</li>
-          <li><strong>Mechanical &amp; Electrical Build:</strong> Fabricated the frame and integrated mechanical, electrical, and GPS tracking subsystems from scratch. Wired motor drive and safety mechanisms throughout.</li>
-          <li><strong>Iterative Prototyping:</strong> Used 3D printing and laser cutting for rapid iteration of frame components; resolved stability issues through multiple geometry revisions. Conducted kinematic and dynamic analysis to validate manoeuvrability improvements between iterations.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div>
-        <div class="tl-date">Jun 2023 – Aug 2023</div>
-        <div class="tl-org">NIT Karnataka</div>
-      </div>
-      <div>
-        <div class="tl-role">Engineering Intern</div>
-        <ul class="tl-bullets">
-          <li><strong>EV Buggy Conversion:</strong> Converted a Mahindra REVA chassis into a functional electric vehicle test buggy. Executed chassis modifications — cut and reinforced the frame, modified swing arms, and integrated a new electric drive differential with controller, battery, and electronics.</li>
-          <li><strong>Fabrication &amp; Assembly:</strong> Fabricated custom footrests to specification; verified all mechanical clearances and electrical connections to complete a running prototype used for subsequent autonomous systems development.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div>
-        <div class="tl-date">Jul 2022</div>
-        <div class="tl-org">Royal Enfield CoE</div>
-      </div>
-      <div>
-        <div class="tl-role">Engineering Intern — Royal Enfield Centre of Excellence, Silver Oak University</div>
-        <ul class="tl-bullets">
-          <li><strong>Engine Servicing:</strong> Diagnosed and resolved faults on UCE and parallel-twin engines across BS3, BS4, and BS6 variants. Performed full overhauls including timing adjustments, carburettor servicing, brake system maintenance, and electrical fault tracing.</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="section">
-<div class="max-w">
-  <div class="section-header reveal">
-    <div class="section-kicker">02 — Projects</div>
-    <h2>Selected Work</h2>
-    <div class="section-rule"></div>
-  </div>
-  <div class="projects-grid">
-
-    <div class="proj-card wide reveal">
-      <div class="proj-img">
-        <!-- <img src="images/steering-assembly.jpg" alt="Steering Actuator"> -->
-        <div class="proj-placeholder">
-          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="5" width="70" height="50" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="40" cy="30" r="15" stroke="currentColor" stroke-width="1.2"/>
-            <circle cx="40" cy="30" r="5" stroke="currentColor" stroke-width="1"/>
-            <rect x="12" y="18" width="12" height="24" rx="1" stroke="currentColor" stroke-width="0.8"/>
-            <rect x="56" y="18" width="12" height="24" rx="1" stroke="currentColor" stroke-width="0.8"/>
-          </svg>
-          <span>Add assembly photo</span>
-        </div>
-        <span class="add-note">Replace with image</span>
-      </div>
-      <div class="proj-body">
-        <div class="proj-type">Mechanical Design · Embedded Systems · Autonomous Vehicles</div>
-        <div class="proj-title">Electromechanical Steering Actuator — Autonomous Vehicle Platform</div>
-        <p class="proj-desc">Designed and built a precision steering actuator for the Mahindra REVA autonomous campus shuttle at NIT Karnataka. Full system design from component selection and CAD through to fabrication, wiring, PID tuning, and hardware-in-the-loop validation. Closed-loop position control via encoder feedback; communicates with the vehicle autonomy platform over CAN 2.0B at 1 Mbps.</p>
-        <div class="proj-metrics">
-          <div class="metric"><span class="metric-n">11 Nm</span><span class="metric-l">Output torque (1:3 gear)</span></div>
-          <div class="metric"><span class="metric-n">0.09°</span><span class="metric-l">Angular resolution</span></div>
-          <div class="metric"><span class="metric-n">&lt;50 ms</span><span class="metric-l">Steering response</span></div>
-          <div class="metric"><span class="metric-n">IP65</span><span class="metric-l">Enclosure rating</span></div>
-        </div>
-        <div class="proj-tags">
-          <span class="tag">SolidWorks</span><span class="tag">ANSYS FEA</span><span class="tag">STM32</span>
-          <span class="tag">Arduino / C++</span><span class="tag">CAN Bus</span><span class="tag">PID Control</span><span class="tag">Fabrication</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="proj-card wide reveal">
-      <div class="proj-img">
-        <!-- <img src="images/sic-ansys.jpg" alt="SiC FEM"> -->
-        <div class="proj-placeholder">
-          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="8" width="70" height="44" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <rect x="14" y="16" width="18" height="12" stroke="currentColor" stroke-width="1"/>
-            <rect x="40" y="16" width="18" height="12" stroke="currentColor" stroke-width="1"/>
-            <line x1="5" y1="36" x2="75" y2="36" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3 2"/>
-          </svg>
-          <span>Add ANSYS render</span>
-        </div>
-        <span class="add-note">Replace with image</span>
-      </div>
-      <div class="proj-body">
-        <div class="proj-type">FEA · Thermo-Mechanical Simulation · Power Electronics</div>
-        <div class="proj-title">Patterned Die-Attach Layer for SiC Power Module Reliability</div>
-        <p class="proj-desc">Component-level thermo-mechanical failure analysis for SiC power modules in electric vehicle applications. Identified die-attach interface stress concentration as the primary failure mode. Conducted a structured FEM study in ANSYS Workbench across multiple geometry variants to characterise stress distribution. Used OptiSLang parameter optimisation to evaluate patterned die-attach configurations and document design recommendations.</p>
-        <div class="proj-tags">
-          <span class="tag">ANSYS Workbench</span><span class="tag">OptiSLang</span><span class="tag">FEM / FEA</span>
-          <span class="tag">SiC Power Electronics</span><span class="tag">Thermal Analysis</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-img">
-        <!-- <img src="images/driver-state.jpg" alt="Driver State"> -->
-        <div class="proj-placeholder">
-          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="30" r="20" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="40" cy="30" r="7" stroke="currentColor" stroke-width="1"/>
-            <line x1="10" y1="30" x2="20" y2="30" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
-            <line x1="60" y1="30" x2="70" y2="30" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
-          </svg>
-          <span>Add project image</span>
-        </div>
-        <span class="add-note">Replace with image</span>
-      </div>
-      <div class="proj-body">
-        <div class="proj-type">Autonomous Systems · AI · ROS2</div>
-        <div class="proj-title">Ambiguity-Aware Driver State Recognition</div>
-        <p class="proj-desc">Real-time drowsiness monitoring pipeline combining IR camera, vehicle kinematics, and LLM-based late fusion. Resolves ambiguous states caused by camera occlusion. Trained Random Forest classifiers on PERCLOS, blink rate, EAR, MAR, and steering entropy.</p>
-        <div class="proj-metrics">
-          <div class="metric"><span class="metric-n">0.94</span><span class="metric-l">F1 — camera</span></div>
-          <div class="metric"><span class="metric-n">0.85</span><span class="metric-l">F1 — vehicle</span></div>
-        </div>
-        <div class="proj-tags"><span class="tag">ROS2</span><span class="tag">CARLA</span><span class="tag">Python</span><span class="tag">LLaMA 3.1</span></div>
-        <a href="https://github.com/LloydAlston/Ambiguity---Aware-Driver-State-Recognition-Using-Multimodal-Sensing-and-LLM-Based-Reasoning" target="_blank" class="proj-link">View on GitHub →</a>
-      </div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-img">
-        <!-- <img src="images/truck-simulink.jpg" alt="Truck Dynamics"> -->
-        <div class="proj-placeholder">
-          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 42 L8 28 L30 28 L38 14 L68 14 L68 42 Z" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="22" cy="46" r="5" stroke="currentColor" stroke-width="1.2"/>
-            <circle cx="54" cy="46" r="5" stroke="currentColor" stroke-width="1.2"/>
-          </svg>
-          <span>Add Simulink screenshot</span>
-        </div>
-        <span class="add-note">Replace with image</span>
-      </div>
-      <div class="proj-body">
-        <div class="proj-type">Vehicle Dynamics · Simulation</div>
-        <div class="proj-title">Heavy-Duty Truck Longitudinal Dynamics</div>
-        <p class="proj-desc">1D physics model of an 18-tonne truck in MATLAB/Simulink. Characterised powertrain performance across load and gradient scenarios. Designed and tuned PID cruise controller; documented physical traction limit boundary where actuator saturation cannot be overcome by control strategy.</p>
-        <div class="proj-metrics">
-          <div class="metric"><span class="metric-n">38.5%</span><span class="metric-l">Peak traction at 5° grade</span></div>
-        </div>
-        <div class="proj-tags"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">PID Control</span></div>
-        <a href="https://github.com/LloydAlston/truck-longitudinal-dynamics" target="_blank" class="proj-link">View on GitHub →</a>
-      </div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-img">
-        <!-- <img src="images/adas-dashboard.jpg" alt="ADAS Tool"> -->
-        <div class="proj-placeholder">
-          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="8" width="70" height="44" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <rect x="10" y="14" width="28" height="16" stroke="currentColor" stroke-width="0.8"/>
-            <rect x="42" y="14" width="28" height="16" stroke="currentColor" stroke-width="0.8"/>
-            <rect x="10" y="34" width="60" height="10" stroke="currentColor" stroke-width="0.8"/>
-          </svg>
-          <span>Add dashboard screenshot</span>
-        </div>
-        <span class="add-note">Replace with image</span>
-      </div>
-      <div class="proj-body">
-        <div class="proj-type">ADAS Validation · Python · ML</div>
-        <div class="proj-title">ADAS Sensor Validation Tool</div>
-        <p class="proj-desc">9-function test catalog covering AEB, ACC, LKA, TSR with weather-conditional sensor confidence modelling. Dual anomaly detection — rule-based thresholds plus IsolationForest across 8 sensor features. Live dashboard aligned to ISO 15622 and ISO 11270.</p>
-        <div class="proj-metrics">
-          <div class="metric"><span class="metric-n">45</span><span class="metric-l">Automated runs</span></div>
-        </div>
-        <div class="proj-tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">ISO 15622</span></div>
-        <a href="https://github.com/LloydAlston/adas-sensor-tool" target="_blank" class="proj-link">View on GitHub →</a>
-      </div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-img">
-        <!-- <img src="images/cad-1.jpg" alt="CAD Model"> -->
-        <div class="proj-placeholder">
-          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="18" y="12" width="44" height="36" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="18" y1="12" x2="8" y2="4" stroke="currentColor" stroke-width="0.8"/>
-            <line x1="62" y1="12" x2="72" y2="4" stroke="currentColor" stroke-width="0.8"/>
-            <line x1="72" y1="4" x2="8" y2="4" stroke="currentColor" stroke-width="0.8"/>
-            <line x1="72" y1="4" x2="72" y2="40" stroke="currentColor" stroke-width="0.8"/>
-            <line x1="62" y1="48" x2="72" y2="40" stroke="currentColor" stroke-width="0.8"/>
-          </svg>
-          <span>Add your CAD render</span>
-        </div>
-        <span class="add-note">Replace with image</span>
-      </div>
-      <div class="proj-body">
-        <div class="proj-type">3D Modelling · CAD Design</div>
-        <div class="proj-title">Your CAD Project Title</div>
-        <p class="proj-desc">Add your 3D modelling project here. Export renders from CATIA / SolidWorks / Fusion 360 as PNG and replace the image above. Describe the design challenge and outcome.</p>
-        <div class="proj-tags"><span class="tag">CATIA V5</span><span class="tag">SolidWorks</span><span class="tag">Fusion 360</span></div>
-      </div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-img">
-        <!-- <img src="images/cad-2.jpg" alt="CAD Model 2"> -->
-        <div class="proj-placeholder">
-          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="30" r="22" stroke="currentColor" stroke-width="1.5"/>
-            <ellipse cx="40" cy="30" rx="22" ry="8" stroke="currentColor" stroke-width="0.8"/>
-            <line x1="40" y1="8" x2="40" y2="52" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3"/>
-          </svg>
-          <span>Add your CAD render</span>
-        </div>
-        <span class="add-note">Replace with image</span>
-      </div>
-      <div class="proj-body">
-        <div class="proj-type">3D Modelling · CAD Design</div>
-        <div class="proj-title">Your Second CAD Project</div>
-        <p class="proj-desc">Add your second CAD project. Cross-sections, exploded views, or rendered screenshots all work well. Describe what you designed and what constraints you worked within.</p>
-        <div class="proj-tags"><span class="tag">3D Modelling</span><span class="tag">FEA</span><span class="tag">Rendering</span></div>
-      </div>
-    </div>
-
-  </div>
-</div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="section section-warm">
-<div class="max-w">
-  <div class="section-header reveal">
-    <div class="section-kicker">03 — Skills</div>
-    <h2>Technical Capabilities</h2>
-    <div class="section-rule"></div>
-  </div>
-  <div class="skills-grid">
-    <div class="reveal">
-      <div class="skill-group-title">CAD &amp; FEM</div>
-      <div class="skill-row"><span>ANSYS Workbench</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
-      <div class="skill-row"><span>CATIA V5</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>SolidWorks</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>Fusion 360</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>Creo</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>OptiSLang</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-    </div>
-    <div class="reveal">
-      <div class="skill-group-title">Simulation &amp; Dynamics</div>
-      <div class="skill-row"><span>MATLAB</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
-      <div class="skill-row"><span>Simulink</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>CARLA Simulator</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>Vehicle Dynamics</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>FEM / FEA</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
-    </div>
-    <div class="reveal">
-      <div class="skill-group-title">Programming &amp; Tools</div>
-      <div class="skill-row"><span>Python</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
-      <div class="skill-row"><span>ROS2</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>Arduino / C++</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>Git / Linux</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>LaTeX</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-      <div class="skill-row"><span>3D Printing · Laser Cutting</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- PUBLICATIONS -->
-<section id="publications" class="section section-alt">
-<div class="max-w">
-  <div class="section-header reveal">
-    <div class="section-kicker">04 — Research</div>
-    <h2>Publications &amp; Patents</h2>
-    <div class="section-rule"></div>
-  </div>
-  <div class="pub-grid">
-    <div class="pub-card reveal">
-      <span class="pub-badge journal">Journal Publication — 2025</span>
-      <div class="pub-title">Comparative Analysis of Surface Roughness and Tool Wear under Dry, MQL, and Cryogenic Machining Conditions in Invar 36 Turning Operations</div>
-      <div class="pub-meta">
-        <strong>Lloyd Alston Dsouza et al.</strong><br>
-        Journal of Mines, Metals and Fuels, Vol. 73(4), pp. 1097–1105, 2025<br><br>
-        Comparative study of dry, MQL, and cryogenic machining for Invar 36 turning. Measured surface roughness and tool wear using calibrated instruments; identified MQL as optimal process condition for balancing surface quality and tool life.
-      </div>
-    </div>
-    <div class="pub-card reveal">
-      <span class="pub-badge patent">Patent — Grant Pending</span>
-      <div class="pub-title">Minimum Quantity Lubrication System With Integrated Air Brush Technology</div>
-      <div class="pub-meta">
-        <strong>Co-inventor: Lloyd Alston Dsouza et al.</strong><br>
-        Application No. 202441075224 A · Published: 11 October 2024<br><br>
-        Co-invented a novel MQL delivery system integrating air-brush technology for precision lubrication in machining applications. Patent published; grant decision pending.
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section">
-<div class="max-w">
-  <div class="section-header reveal">
-    <div class="section-kicker">05 — About</div>
-    <h2>Background</h2>
-    <div class="section-rule"></div>
-  </div>
-  <div class="about-grid">
-    <div class="reveal">
-      <div class="about-name">Lloyd Alston Dsouza</div>
-      <div class="about-title">Automotive Engineer</div>
-      <div class="contact-links">
-        <a href="mailto:lloydalston101@gmail.com" class="contact-link"><span class="ci">✉</span> lloydalston101@gmail.com</a>
-        <a href="tel:+4915510833958" class="contact-link"><span class="ci">☎</span> +49 155 1083 3958</a>
-        <a href="https://linkedin.com/in/lloydalstondsouza" target="_blank" class="contact-link"><span class="ci">in</span> linkedin.com/in/lloydalstondsouza</a>
-        <a href="https://github.com/LloydAlston" target="_blank" class="contact-link"><span class="ci">⌥</span> github.com/LloydAlston</a>
-      </div>
-      <div class="about-stats">
-        <div class="about-stat"><div class="stat-n">1</div><div class="stat-l">Journal Paper</div></div>
-        <div class="about-stat"><div class="stat-n">1</div><div class="stat-l">Patent Pending</div></div>
-        <div class="about-stat"><div class="stat-n">2.1</div><div class="stat-l">GPA (DE scale)</div></div>
-        <div class="about-stat"><div class="stat-n">4+</div><div class="stat-l">Projects</div></div>
-      </div>
-    </div>
-    <div class="reveal">
-      <div class="about-bio">
-        <p>I'm a <strong>Master's student in International Automotive Engineering</strong> at Technische Hochschule Ingolstadt, specialising in Vehicle Safety. My engineering background spans the full product development cycle — from mechanical design and fabrication to FEA simulation and embedded control.</p>
-        <p>My hands-on experience includes designing and building the <strong>electromechanical steering actuator</strong> for an autonomous vehicle platform at NIT Karnataka — from component selection and CAD through to wiring, PID tuning, and HIL validation. On the simulation side I have worked on <strong>thermo-mechanical FEA of SiC power modules</strong> in ANSYS and vehicle dynamics modelling in MATLAB/Simulink.</p>
-        <p>I hold a <strong>published journal paper</strong> and a <strong>co-invented patent pending grant</strong>. I am looking for Werkstudent or Praktikum roles in Germany in vehicle safety, ADAS, powertrain, or mechanical development.</p>
-      </div>
-      <div class="edu-list">
-        <div class="edu-item">
-          <div class="edu-degree">M.Eng. International Automotive Engineering</div>
-          <div class="edu-school">Technische Hochschule Ingolstadt · March 2025 – Ongoing</div>
-          <div class="edu-detail">Specialisation: Vehicle Safety &nbsp;·&nbsp; <span class="gpa">GPA 2.1 (German scale — 1.0 is best)</span><br>Modules: Vehicle Dynamics, ADAS &amp; Safety Systems, Sensor Technology, Mathematical Modelling, CAx-Techniques, Power Train</div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-degree">B.Eng. Mechanical Engineering</div>
-          <div class="edu-school">N.M.A.M. Institute of Technology, Karnataka · Dec 2020 – May 2024</div>
-          <div class="edu-detail"><span class="gpa">CGPA: 8.56 / 10</span><br>Modules: FEM, Mechatronics, Control Engineering, Manufacturing Technology, CAD, Automotive Engineering</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- CTA -->
-<div class="cta-strip">
-  <div>
-    <h3>Open to Roles in Germany</h3>
-    <p>Werkstudent · Praktikum · Thesis — Vehicle Safety, ADAS, Powertrain, Mechanical Development</p>
-  </div>
-  <div class="cta-btns">
-    <a href="mailto:lloydalston101@gmail.com" class="btn btn-gold">Send Email</a>
-    <a href="https://linkedin.com/in/lloydalstondsouza" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
-  </div>
-</div>
-
-<footer>
-  <span>Lloyd Alston Dsouza · Ingolstadt, Germany</span>
-  <span>lloydAlston.github.io</span>
-  <span>Residence Permit valid until Feb 2028</span>
-</footer>
-
-<script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.07 });
-  document.querySelectorAll('.reveal, .tl-item, .proj-card, .pub-card').forEach(el => obs.observe(el));
-</script>
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.reveal, .tl-item, .proj-card, .pub-card').forEach(el => obs.observe(el));
+  </script>
 </body>
+
 </html>
