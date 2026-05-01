@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lloyd Alston Dsouza · Automotive Engineer & CAD Designer</title>
+  <title>Lloyd Alston Dsouza · Automotive Engineer</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap"
     rel="stylesheet">
@@ -55,6 +54,11 @@
       width: 100%;
       height: 100%;
       object-fit: cover
+    }
+
+    .cert-img img,
+    .sic-img img {
+      object-fit: contain
     }
 
     /* ── NAV ── */
@@ -508,9 +512,19 @@
     }
 
     .cert-img {
-      aspect-ratio: 16/9;
+      aspect-ratio: 3/2;
       overflow: hidden;
-      background: var(--soft)
+      background: var(--soft);
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .cert-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 0.5rem
     }
 
     .cert-body {
@@ -1209,7 +1223,7 @@
   <!-- HERO -->
   <header class="hero">
     <div>
-      <div class="hero-tag">Automotive Engineer · CAD Designer · Ingolstadt</div>
+      <div class="hero-tag">Automotive Engineer · Ingolstadt</div>
       <h1>Lloyd Alston<br><span>Dsouza</span></h1>
       <p class="hero-desc">
         <strong>M.Eng. International Automotive Engineering</strong> at THI Ingolstadt,
@@ -1322,24 +1336,6 @@
             <p class="cad-card-desc">Detailed model of the NEMA-23 bipolar stepper motor used in the autonomous vehicle
               steering actuator assembly. Modelled to actual specifications: 45 kgcm holding torque, 1.8° step angle,
               flanged face-mount body.</p>
-          </div>
-        </div>
-
-        <div class="cad-card" style="grid-column:span 2">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)">
-            <div class="cad-img" style="aspect-ratio:4/3"><img src="images/frame.png" alt="Enclosure Frame"></div>
-            <div class="cad-body"
-              style="background:var(--bg);padding:1.5rem;display:flex;flex-direction:column;justify-content:center">
-              <div class="cad-card-label">Component · SolidWorks</div>
-              <div class="cad-card-title">Steering Actuator Enclosure</div>
-              <p class="cad-card-desc">Custom mild steel enclosure (242×174×128 mm) designed for the autonomous vehicle
-                steering actuator. Features ventilation louvre pattern, motor shaft clearance cutout, connector
-                apertures on side panel, and mounting flange pattern. Designed to IP65 rating with sealed cable gland
-                positions.</p>
-              <div class="cad-tags" style="margin-top:0.75rem"><span class="tag">SolidWorks</span><span
-                  class="tag">Sheet Metal</span><span class="tag">IP65</span><span class="tag">Autonomous Vehicle</span>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -1649,12 +1645,8 @@
       </div>
       <div class="about-grid">
         <div class="reveal">
-          <div class="about-photo">
-            <img src="images/HAM202412001110_CI_v0_photo.jpg" alt="Lloyd Alston Dsouza"
-              onerror="this.parentElement.style.display='none'">
-          </div>
           <div class="about-name">Lloyd Alston Dsouza</div>
-          <div class="about-role">Automotive Engineer · CAD Designer</div>
+          <div class="about-role">Automotive Engineer</div>
           <div class="contact-links">
             <a href="mailto:lloydalston101@gmail.com" class="contact-link"><span class="ci">✉</span>
               lloydalston101@gmail.com</a>
