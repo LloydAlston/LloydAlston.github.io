@@ -1782,6 +1782,33 @@
 
         <div class="proj-card" data-cat="safety">
           <div class="proj-body">
+            <div class="proj-type">Passive Safety · Occupant Protection · Python</div>
+            <div class="proj-title">Restraint System Benchmark Study</div>
+            <p class="proj-desc">1D lumped-mass occupant kinematics model for evaluating seatbelt and airbag
+              parameters in frontal crashes. Implements a haversine/trapezoidal crash pulse, a piecewise seatbelt
+              force law (slack → elastic → load-limiter plateau), and a nonlinear airbag contact model. Five
+              restraint configurations are benchmarked against the same pulse — belt-only, early/late airbag firing,
+              and low/high load-limiter force — with injury-proxy metrics (3ms chest clip, HIC-style head criterion)
+              computed from each run. Key finding: belt-only restraint yields the lowest peak chest acceleration but
+              >1.2 m forward excursion, demonstrating why airbag firing time and load-limiter level must be
+              co-optimised rather than tuned independently.</p>
+            <div class="proj-metrics">
+              <div class="metric"><span class="mn">5</span><span class="ml">Restraint configs benchmarked</span></div>
+              <div class="metric"><span class="mn">3ms clip & HIC</span><span class="ml">Injury-proxy metrics</span></div>
+            </div>
+            <div class="cad-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Lumped-Mass Model</span>
+              <span class="tag">Occupant Kinematics</span>
+              <span class="tag">Passive Safety</span>
+            </div>
+            <a href="https://github.com/LloydAlston/restraint-system-benchmark" target="_blank"
+              class="proj-link">View on GitHub →</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="safety">
+          <div class="proj-body">
             <div class="proj-type">Reliability Engineering · Warranty Analytics</div>
             <div class="proj-title">Powertrain Field Failure Analyzer</div>
             <p class="proj-desc">Python tool for warranty data analysis and damage prognosis in powertrain systems.
