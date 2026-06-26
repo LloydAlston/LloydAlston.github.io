@@ -46,39 +46,14 @@
       position: relative;
     }
 
-    /* ── VIDEO BACKGROUND ── */
-    .video-bg-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      z-index: -2;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .video-bg-container video {
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-      filter: brightness(0.3) saturate(1.2);
-    }
-
-    .video-overlay {
+    /* ── CANVAS BACKGROUND ── */
+    #bg-canvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
-      background: rgba(11, 15, 25, 0.7);
+      z-index: -2;
     }
 
     /* ── CUSTOM CURSOR ── */
@@ -319,40 +294,17 @@
     }
 
     .hero-panel {
-      background: rgba(11, 15, 25, 0.4);
+      background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 1.25rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
       width: 100%;
       max-width: 1140px;
-      margin-top: 2rem;
+      margin-top: 4rem;
       text-align: left;
-    }
-
-    .top-panel {
-      margin-top: 0;
-      margin-bottom: 3rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .pi-line {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-left: 3px solid var(--cyan);
-      padding-left: 1rem;
-    }
-
-    .pi-line strong {
-      color: var(--cyan);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      min-width: 120px;
     }
 
     .pi {
@@ -1421,13 +1373,7 @@
   <div class="cursor-outer"></div>
   <div class="cursor-inner"></div>
 
-  <div class="video-bg-container">
-    <video autoplay muted loop playsinline>
-      <source src="https://assets.codepen.io/3364443/720p_car_driving.mp4" type="video/mp4">
-      <!-- High-quality autonomous vehicle background -->
-    </video>
-  </div>
-  <div class="video-overlay"></div>
+  <canvas id="bg-canvas"></canvas>
 
   <!-- NAV -->
   <nav>
@@ -1445,14 +1391,6 @@
 
   <!-- HERO -->
   <header class="hero">
-    <div class="hero-panel top-panel">
-      <div class="pi-line"><strong>Programme:</strong> M.Eng. Automotive Engineering · THI Ingolstadt <span class="pp">Ongoing</span></div>
-      <div class="pi-line"><strong>Specialisation:</strong> Vehicle Safety</div>
-      <div class="pi-line"><strong>CAD Certified:</strong> SolidWorks Associate · CATIA V5 <span class="pp">Dassault Systèmes</span></div>
-      <div class="pi-line"><strong>Ham Radio:</strong> VU3HXY · Amateur Restricted Grade</div>
-      <div class="pi-line"><strong>Research:</strong> 1 Journal Paper · 1 Patent Published <span class="pp">Verified</span></div>
-    </div>
-    
     <div>
       <div class="hero-tag">Automotive Engineer · Ingolstadt</div>
       <h1>Lloyd Alston<br><span>Dsouza</span></h1>
@@ -1465,6 +1403,31 @@
         <a href="#cad" class="btn btn-gold">View CAD Work</a>
         <a href="https://linkedin.com/in/lloydalstondsouza" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
         <a href="https://github.com/LloydAlston" target="_blank" class="btn btn-ghost">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="pi">
+        <div class="pl">Programme</div>
+        <div class="pv">M.Eng. Automotive Engineering · THI Ingolstadt</div>
+        <div class="pp">Ongoing</div>
+      </div>
+      <div class="pi">
+        <div class="pl">Specialisation</div>
+        <div class="pv">Vehicle Safety</div>
+      </div>
+      <div class="pi">
+        <div class="pl">CAD Certified</div>
+        <div class="pv">SolidWorks Associate · CATIA V5</div>
+        <div class="pp">Dassault Systèmes</div>
+      </div>
+      <div class="pi">
+        <div class="pl">Ham Radio</div>
+        <div class="pv">VU3HXY · Amateur Restricted Grade</div>
+      </div>
+      <div class="pi">
+        <div class="pl">Research</div>
+        <div class="pv">1 Journal Paper · 1 Patent Published</div>
+        <div class="pp">Verified</div>
       </div>
     </div>
   </header>
@@ -2710,99 +2673,221 @@
   })();
 </script>
   <script>
-    // LIDAR Canvas Animation
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, particles;
+  (function() {
+    const C = document.getElementById('bg-canvas');
+    const X = C.getContext('2d');
+    let W, H;
 
-    function init() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      particles = [];
-      const rows = 40;
-      const cols = 60;
-      for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-          particles.push({
-            x: j * (width / cols),
-            y: i * (height / rows),
-            originX: j * (width / cols),
-            originY: i * (height / rows),
-            size: Math.random() * 2,
-            brightness: Math.random()
-          });
-        }
+    function resize() { W = C.width = window.innerWidth; H = C.height = window.innerHeight; }
+    window.addEventListener('resize', resize);
+    resize();
+
+    /* ── road lines ── */
+    function drawRoad(t) {
+      const cx = W / 2;
+      const horizon = H * 0.38;
+      const vanish = cx;
+
+      // road surface
+      const grad = X.createLinearGradient(0, horizon, 0, H);
+      grad.addColorStop(0, 'rgba(20,25,40,0.9)');
+      grad.addColorStop(1, 'rgba(11,15,25,1)');
+      X.fillStyle = grad;
+      X.beginPath();
+      X.moveTo(vanish - 2, horizon);
+      X.lineTo(vanish + 2, horizon);
+      X.lineTo(W * 0.85, H);
+      X.lineTo(W * 0.15, H);
+      X.fill();
+
+      // lane dashes
+      for (let i = 0; i < 18; i++) {
+        const p = ((i * 0.065 + t * 0.0004) % 1);
+        const y = horizon + (H - horizon) * p * p;
+        const spread = (y - horizon) / (H - horizon);
+        const lx = vanish + (W * 0.15 - vanish) * spread;
+        const rx = vanish + (W * 0.85 - vanish) * spread;
+        const mx = (lx + rx) / 2;
+        const dashW = Math.max(1, spread * 4);
+        const dashH = Math.max(1, spread * 18);
+        X.fillStyle = `rgba(6,182,212,${0.15 + spread * 0.25})`;
+        X.fillRect(mx - dashW / 2, y, dashW, dashH);
+        // edge lines
+        X.fillStyle = `rgba(6,182,212,${0.08 + spread * 0.12})`;
+        X.fillRect(lx, y, dashW * 0.6, dashH * 0.7);
+        X.fillRect(rx, y, dashW * 0.6, dashH * 0.7);
       }
     }
 
-    function animate() {
-      ctx.fillStyle = '#0B0F19';
-      ctx.fillRect(0, 0, width, height);
-      
-      const time = Date.now() * 0.001;
-      
-      particles.forEach(p => {
-        const offset = Math.sin(time + (p.x * 0.01) + (p.y * 0.01)) * 20;
-        const b = (Math.sin(time * 2 + (p.x * 0.005)) + 1) * 0.5;
-        
-        ctx.fillStyle = `rgba(6, 182, 212, ${b * 0.4})`;
-        ctx.beginPath();
-        ctx.arc(p.x + offset, p.y + offset, p.size, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Occasional scanner line
-        if (Math.abs((p.y / height) - (time % 1.5) / 1.5) < 0.05) {
-            ctx.fillStyle = `rgba(6, 182, 212, 0.1)`;
-            ctx.fillRect(0, p.y, width, 1);
-        }
-      });
-      
-      requestAnimationFrame(animate);
+    /* ── autonomous car silhouette ── */
+    function drawCar(t) {
+      const cx = W / 2;
+      const carY = H * 0.72;
+      const carW = W * 0.12;
+      const carH = carW * 0.38;
+
+      // car body
+      X.fillStyle = 'rgba(15,22,40,0.95)';
+      X.strokeStyle = 'rgba(6,182,212,0.5)';
+      X.lineWidth = 1.5;
+      X.beginPath();
+      X.moveTo(cx - carW / 2, carY);
+      X.lineTo(cx - carW / 2 + carW * 0.15, carY - carH * 0.9);
+      X.lineTo(cx - carW * 0.2, carY - carH * 1.3);
+      X.lineTo(cx + carW * 0.2, carY - carH * 1.3);
+      X.lineTo(cx + carW / 2 - carW * 0.15, carY - carH * 0.9);
+      X.lineTo(cx + carW / 2, carY);
+      X.closePath();
+      X.fill();
+      X.stroke();
+
+      // windshield glow
+      X.fillStyle = 'rgba(6,182,212,0.08)';
+      X.beginPath();
+      X.moveTo(cx - carW * 0.18, carY - carH * 1.25);
+      X.lineTo(cx + carW * 0.18, carY - carH * 1.25);
+      X.lineTo(cx + carW / 2 - carW * 0.18, carY - carH * 0.95);
+      X.lineTo(cx - carW / 2 + carW * 0.18, carY - carH * 0.95);
+      X.closePath();
+      X.fill();
+
+      // tail-lights
+      const glowI = (Math.sin(t * 0.003) + 1) * 0.15 + 0.2;
+      X.fillStyle = `rgba(6,182,212,${glowI})`;
+      X.fillRect(cx - carW / 2 - 1, carY - 4, 8, 3);
+      X.fillRect(cx + carW / 2 - 7, carY - 4, 8, 3);
+
+      // LIDAR dome on roof
+      X.strokeStyle = `rgba(6,182,212,${0.3 + Math.sin(t * 0.005) * 0.15})`;
+      X.lineWidth = 1;
+      X.beginPath();
+      X.arc(cx, carY - carH * 1.35, 4, 0, Math.PI * 2);
+      X.stroke();
     }
 
-    window.addEventListener('resize', init);
-    init();
-    animate();
+    /* ── sensor scan lines from car ── */
+    function drawSensors(t) {
+      const cx = W / 2;
+      const carTop = H * 0.72 - (W * 0.12) * 0.38 * 1.35;
+      const horizon = H * 0.38;
+      const scanAngle = (t * 0.001) % (Math.PI * 2);
+      const numRays = 12;
 
-    // Custom Cursor Logic
+      for (let i = 0; i < numRays; i++) {
+        const a = (i / numRays) * Math.PI - Math.PI / 2 + scanAngle * 0.3;
+        const len = (H - horizon) * 0.6;
+        const ex = cx + Math.cos(a) * len * 0.8;
+        const ey = carTop + Math.sin(a) * len * 0.3 - len * 0.4;
+        const alpha = 0.03 + Math.sin(t * 0.002 + i) * 0.02;
+        X.strokeStyle = `rgba(6,182,212,${alpha})`;
+        X.lineWidth = 0.5;
+        X.beginPath();
+        X.moveTo(cx, carTop);
+        X.lineTo(ex, Math.max(ey, horizon * 0.8));
+        X.stroke();
+      }
+
+      // scanning ring around LIDAR
+      const ringR = 15 + Math.sin(t * 0.004) * 8;
+      X.strokeStyle = `rgba(6,182,212,${0.05 + Math.sin(t * 0.003) * 0.03})`;
+      X.lineWidth = 0.5;
+      X.beginPath();
+      X.arc(cx, carTop, ringR, 0, Math.PI * 2);
+      X.stroke();
+    }
+
+    /* ── HUD overlay ── */
+    function drawHUD(t) {
+      // grid lines on road
+      const horizon = H * 0.38;
+      X.strokeStyle = 'rgba(6,182,212,0.03)';
+      X.lineWidth = 0.5;
+      for (let i = 0; i < 8; i++) {
+        const y = horizon + (H - horizon) * (i / 8);
+        X.beginPath();
+        X.moveTo(0, y);
+        X.lineTo(W, y);
+        X.stroke();
+      }
+
+      // speed readout
+      const spd = 72 + Math.sin(t * 0.001) * 3;
+      X.font = '600 11px Source Sans 3, sans-serif';
+      X.fillStyle = 'rgba(6,182,212,0.25)';
+      X.textAlign = 'left';
+      X.fillText('SPD ' + spd.toFixed(0) + ' km/h', 30, H - 40);
+      X.fillText('MODE: AUTONOMOUS', 30, H - 25);
+
+      // corner brackets
+      const bLen = 25;
+      X.strokeStyle = 'rgba(6,182,212,0.12)';
+      X.lineWidth = 1;
+      // top-left
+      X.beginPath(); X.moveTo(20, 20 + bLen); X.lineTo(20, 20); X.lineTo(20 + bLen, 20); X.stroke();
+      // top-right
+      X.beginPath(); X.moveTo(W - 20 - bLen, 20); X.lineTo(W - 20, 20); X.lineTo(W - 20, 20 + bLen); X.stroke();
+      // bottom-left
+      X.beginPath(); X.moveTo(20, H - 20 - bLen); X.lineTo(20, H - 20); X.lineTo(20 + bLen, H - 20); X.stroke();
+      // bottom-right
+      X.beginPath(); X.moveTo(W - 20 - bLen, H - 20); X.lineTo(W - 20, H - 20); X.lineTo(W - 20, H - 20 - bLen); X.stroke();
+    }
+
+    /* ── environment particles (oncoming lights / dust) ── */
+    const envP = [];
+    for (let i = 0; i < 60; i++) {
+      envP.push({ x: Math.random(), y: Math.random(), s: Math.random() * 1.5 + 0.5, sp: Math.random() * 0.3 + 0.1 });
+    }
+
+    function drawEnv(t) {
+      const horizon = H * 0.38;
+      envP.forEach(p => {
+        p.y += p.sp * 0.005;
+        if (p.y > 1) { p.y = 0; p.x = Math.random(); p.s = Math.random() * 1.5 + 0.5; }
+        const sy = horizon + (H - horizon) * p.y * p.y;
+        const spread = p.y;
+        const sx = W / 2 + (p.x - 0.5) * W * spread * 0.7;
+        X.fillStyle = `rgba(6,182,212,${0.08 * spread})`;
+        X.beginPath();
+        X.arc(sx, sy, p.s * spread, 0, Math.PI * 2);
+        X.fill();
+      });
+    }
+
+    /* ── main loop ── */
+    function frame() {
+      const t = Date.now();
+      X.fillStyle = '#0B0F19';
+      X.fillRect(0, 0, W, H);
+
+      // sky gradient
+      const sky = X.createLinearGradient(0, 0, 0, H * 0.42);
+      sky.addColorStop(0, 'rgba(6,182,212,0.04)');
+      sky.addColorStop(1, 'transparent');
+      X.fillStyle = sky;
+      X.fillRect(0, 0, W, H * 0.42);
+
+      drawRoad(t);
+      drawEnv(t);
+      drawSensors(t);
+      drawCar(t);
+      drawHUD(t);
+
+      requestAnimationFrame(frame);
+    }
+    frame();
+
+    // Custom Cursor
     const outer = document.querySelector('.cursor-outer');
     const inner = document.querySelector('.cursor-inner');
-
-    window.addEventListener('mousemove', (e) => {
-      outer.style.left = e.clientX + 'px';
-      outer.style.top = e.clientY + 'px';
-      inner.style.left = e.clientX + 'px';
-      inner.style.top = e.clientY + 'px';
+    window.addEventListener('mousemove', e => {
+      outer.style.left = e.clientX + 'px'; outer.style.top = e.clientY + 'px';
+      inner.style.left = e.clientX + 'px'; inner.style.top = e.clientY + 'px';
     });
-
-    const interactives = document.querySelectorAll('a, button, .proj-card, .cad-card, .pf-pill');
-    interactives.forEach(el => {
+    document.querySelectorAll('a, button, .proj-card, .cad-card, .pf-pill').forEach(el => {
       el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
       el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
     });
-
-    // Handle Project Filtering
-    const pills = document.querySelectorAll('.pf-pill');
-    const sections = document.querySelectorAll('.proj-section');
-
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        const filter = pill.getAttribute('data-filter');
-        
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-
-        sections.forEach(sec => {
-          if (filter === 'all' || sec.classList.contains(filter)) {
-            sec.style.display = 'block';
-            setTimeout(() => sec.style.opacity = '1', 10);
-          } else {
-            sec.style.opacity = '0';
-            setTimeout(() => sec.style.display = 'none', 250);
-          }
-        });
-      });
-    });
+  })();
   </script>
 </body>
 
