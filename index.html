@@ -46,29 +46,15 @@
       position: relative;
     }
 
-    /* ── VIDEO BACKGROUND ── */
-    .video-bg-container {
+    /* ── CANVAS BACKGROUND ── */
+    #bg-canvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100vh;
       z-index: -2;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .video-bg-container video {
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-      filter: brightness(0.3) saturate(1.5) contrast(1.2);
+      background: #0B0F19;
     }
 
     .video-overlay {
@@ -78,7 +64,7 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      background: radial-gradient(circle at center, transparent 0%, rgba(11, 15, 25, 0.9) 100%);
+      background: radial-gradient(circle at center, transparent 0%, rgba(11, 15, 25, 0.8) 100%);
     }
 
     /* ── CUSTOM CURSOR ── */
@@ -1399,12 +1385,7 @@
   <div class="cursor-outer"></div>
   <div class="cursor-inner"></div>
 
-  <div class="video-bg-container">
-    <video autoplay muted loop playsinline poster="images/driver-state.jpg">
-      <source src="https://assets.codepen.io/3364443/720p_car_driving.mp4" type="video/mp4">
-      <!-- Fallback pattern with digital overlay if video fails -->
-    </video>
-  </div>
+  <canvas id="bg-canvas"></canvas>
   <div class="video-overlay"></div>
 
   <!-- NAV -->
@@ -2705,6 +2686,60 @@
   })();
 </script>
   <script>
+    // LIDAR Canvas Animation
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, particles;
+
+    function init() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      particles = [];
+      const rows = 40;
+      const cols = 60;
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+          particles.push({
+            x: j * (width / cols),
+            y: i * (height / rows),
+            originX: j * (width / cols),
+            originY: i * (height / rows),
+            size: Math.random() * 2,
+            brightness: Math.random()
+          });
+        }
+      }
+    }
+
+    function animate() {
+      ctx.fillStyle = '#0B0F19';
+      ctx.fillRect(0, 0, width, height);
+      
+      const time = Date.now() * 0.001;
+      
+      particles.forEach(p => {
+        const offset = Math.sin(time + (p.x * 0.01) + (p.y * 0.01)) * 20;
+        const b = (Math.sin(time * 2 + (p.x * 0.005)) + 1) * 0.5;
+        
+        ctx.fillStyle = `rgba(6, 182, 212, ${b * 0.4})`;
+        ctx.beginPath();
+        ctx.arc(p.x + offset, p.y + offset, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Occasional scanner line
+        if (Math.abs((p.y / height) - (time % 1.5) / 1.5) < 0.05) {
+            ctx.fillStyle = `rgba(6, 182, 212, 0.1)`;
+            ctx.fillRect(0, p.y, width, 1);
+        }
+      });
+      
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    animate();
+
     // Custom Cursor Logic
     const outer = document.querySelector('.cursor-outer');
     const inner = document.querySelector('.cursor-inner');
