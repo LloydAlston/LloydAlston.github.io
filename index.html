@@ -1022,9 +1022,88 @@
       border: 1px solid var(--border);
       padding: 1.4rem;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: var(--soft);
+      position: relative;
+    }
+
+    .ham-info-wrap {
+      display: flex;
       gap: 1.25rem;
       align-items: flex-start;
-      background: var(--soft)
+      flex: 1 1 350px;
+    }
+
+    .ham-waterfall-container {
+      flex: 0 0 280px;
+      height: 105px;
+      background: rgba(10, 14, 23, 0.95);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: monospace;
+      font-size: 9px;
+      color: rgba(6, 182, 212, 0.85);
+      box-shadow: inset 0 0 10px rgba(6, 182, 212, 0.15);
+    }
+
+    @media (max-width: 650px) {
+      .ham-waterfall-container {
+        flex: 1 1 100%;
+        height: 100px;
+      }
+    }
+
+    .ham-waterfall-header, .ham-waterfall-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 6px;
+      background: rgba(6, 182, 212, 0.05);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.15);
+      user-select: none;
+      box-sizing: border-box;
+    }
+
+    .ham-waterfall-footer {
+      border-bottom: none;
+      border-top: 1px solid rgba(6, 182, 212, 0.15);
+      color: rgba(6, 182, 212, 0.5);
+    }
+
+    .ham-wf-status {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: bold;
+      color: #10B981;
+    }
+
+    .ham-wf-status .blink {
+      animation: hamBlink 1s infinite alternate;
+    }
+
+    @keyframes hamBlink {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+
+    .ham-wf-freq {
+      color: var(--cyan);
+      font-weight: bold;
+    }
+
+    #ham-waterfall-canvas {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #0A0E17;
+      box-sizing: border-box;
     }
 
     .ham-icon {
@@ -2354,14 +2433,28 @@
 
       <!-- Ham Radio -->
       <div class="ham-card reveal" style="margin-top:2rem">
-        <div class="ham-icon">📡</div>
-        <div>
-          <div class="ham-title">Licensed Amateur Radio Operator</div>
-          <div class="ham-call">VU3HXY</div>
-          <div class="ham-detail">
-            <strong>Grade:</strong> Amateur Restricted Grade · <strong>License No:</strong> 45384<br>
-            <strong>Issued by:</strong> Government of India, Ministry of Communications, WPC Wing<br>
-            <strong>Date of issue:</strong> 24 February 2025 · <strong>Valid until:</strong> 24 January 2083
+        <div class="ham-info-wrap">
+          <div class="ham-icon">📡</div>
+          <div>
+            <div class="ham-title">Licensed Amateur Radio Operator</div>
+            <div class="ham-call">VU3HXY</div>
+            <div class="ham-detail">
+              <strong>Grade:</strong> Amateur Restricted Grade · <strong>License No:</strong> 45384<br>
+              <strong>Issued by:</strong> Government of India, Ministry of Communications, WPC Wing<br>
+              <strong>Date of issue:</strong> 24 February 2025 · <strong>Valid until:</strong> 24 January 2083
+            </div>
+          </div>
+        </div>
+        
+        <div class="ham-waterfall-container">
+          <div class="ham-waterfall-header">
+            <span class="ham-wf-status"><span class="blink">●</span> RX ACTIVE</span>
+            <span class="ham-wf-freq">145.500 MHz</span>
+          </div>
+          <canvas id="ham-waterfall-canvas"></canvas>
+          <div class="ham-waterfall-footer">
+            <span>SDR SPECTRUM ANALYZER</span>
+            <span>RSSI: -92 dBm</span>
           </div>
         </div>
       </div>
@@ -2531,6 +2624,7 @@
             <span class="tag">ROS2</span>
             <span class="tag">Arduino / C++</span>
             <span class="tag">Git / Linux</span>
+            <span class="tag">MS Office</span>
             <span class="tag">3D Printing</span>
             <span class="tag">Laser Cutting</span>
             <span class="tag">RF / Antenna Design</span>
@@ -2724,51 +2818,156 @@
       const cx = W / 2;
       const carY = H * 0.72;
       const carW = W * 0.12;
-      const carH = carW * 0.38;
+      const carH = carW * 0.40;
 
-      // car body
-      X.fillStyle = 'rgba(15,22,40,0.95)';
-      X.strokeStyle = 'rgba(6,182,212,0.5)';
+      // 1. Under-car shadow / ground effect (cyan radial glow)
+      const shadowGrad = X.createRadialGradient(cx, carY, 2, cx, carY, carW * 0.7);
+      shadowGrad.addColorStop(0, 'rgba(6, 182, 212, 0.4)');
+      shadowGrad.addColorStop(1, 'rgba(6, 182, 212, 0)');
+      X.fillStyle = shadowGrad;
+      X.beginPath();
+      X.ellipse(cx, carY, carW * 0.6, 8, 0, 0, Math.PI * 2);
+      X.fill();
+
+      // 2. Tires
+      const tireW = carW * 0.12;
+      const tireH = carH * 0.45;
+      X.fillStyle = '#060a12';
+      X.strokeStyle = 'rgba(6,182,212,0.4)';
+      X.lineWidth = 1;
+      // Left tire
+      X.beginPath();
+      X.roundRect(cx - carW * 0.48, carY - tireH, tireW, tireH, 2);
+      X.fill(); X.stroke();
+      // Right tire
+      X.beginPath();
+      X.roundRect(cx + carW * 0.48 - tireW, carY - tireH, tireW, tireH, 2);
+      X.fill(); X.stroke();
+
+      // 3. Lower Bumper and Diffuser
+      X.fillStyle = 'rgba(11, 16, 28, 0.95)';
+      X.strokeStyle = 'rgba(6,182,212,0.6)';
+      X.lineWidth = 1.5;
+      
+      X.beginPath();
+      X.moveTo(cx - carW * 0.46, carY - 2);
+      X.lineTo(cx + carW * 0.46, carY - 2);
+      X.lineTo(cx + carW * 0.48, carY - carH * 0.55);
+      X.lineTo(cx - carW * 0.48, carY - carH * 0.55);
+      X.closePath();
+      X.fill();
+      X.stroke();
+
+      // Diffuser fins
+      X.strokeStyle = 'rgba(6,182,212,0.4)';
+      X.lineWidth = 1;
+      for (let offset = -0.2; offset <= 0.2; offset += 0.1) {
+        X.beginPath();
+        X.moveTo(cx + carW * offset, carY - 2);
+        X.lineTo(cx + carW * offset, carY - carH * 0.15);
+        X.stroke();
+      }
+
+      // 4. Upper Cabin / Greenhouse
+      X.fillStyle = 'rgba(15, 22, 40, 0.85)';
+      X.strokeStyle = 'rgba(6,182,212,0.6)';
       X.lineWidth = 1.5;
       X.beginPath();
-      X.moveTo(cx - carW / 2, carY);
-      X.lineTo(cx - carW / 2 + carW * 0.15, carY - carH * 0.9);
-      X.lineTo(cx - carW * 0.2, carY - carH * 1.3);
-      X.lineTo(cx + carW * 0.2, carY - carH * 1.3);
-      X.lineTo(cx + carW / 2 - carW * 0.15, carY - carH * 0.9);
-      X.lineTo(cx + carW / 2, carY);
+      X.moveTo(cx - carW * 0.42, carY - carH * 0.55);
+      X.lineTo(cx - carW * 0.26, carY - carH * 1.25);
+      X.lineTo(cx + carW * 0.26, carY - carH * 1.25);
+      X.lineTo(cx + carW * 0.42, carY - carH * 0.55);
       X.closePath();
       X.fill();
       X.stroke();
 
-      // windshield glow
-      X.fillStyle = 'rgba(6,182,212,0.08)';
-      X.beginPath();
-      X.moveTo(cx - carW * 0.18, carY - carH * 1.25);
-      X.lineTo(cx + carW * 0.18, carY - carH * 1.25);
-      X.lineTo(cx + carW / 2 - carW * 0.18, carY - carH * 0.95);
-      X.lineTo(cx - carW / 2 + carW * 0.18, carY - carH * 0.95);
-      X.closePath();
-      X.fill();
-
-      // tail-lights
-      const glowI = (Math.sin(t * 0.003) + 1) * 0.15 + 0.2;
-      X.fillStyle = `rgba(6,182,212,${glowI})`;
-      X.fillRect(cx - carW / 2 - 1, carY - 4, 8, 3);
-      X.fillRect(cx + carW / 2 - 7, carY - 4, 8, 3);
-
-      // LIDAR dome on roof
-      X.strokeStyle = `rgba(6,182,212,${0.3 + Math.sin(t * 0.005) * 0.15})`;
+      // Inner Windshield
+      X.fillStyle = 'rgba(6,182,212,0.12)';
+      X.strokeStyle = 'rgba(6,182,212,0.4)';
       X.lineWidth = 1;
       X.beginPath();
-      X.arc(cx, carY - carH * 1.35, 4, 0, Math.PI * 2);
+      X.moveTo(cx - carW * 0.36, carY - carH * 0.65);
+      X.lineTo(cx - carW * 0.22, carY - carH * 1.18);
+      X.lineTo(cx + carW * 0.22, carY - carH * 1.18);
+      X.lineTo(cx + carW * 0.36, carY - carH * 0.65);
+      X.closePath();
+      X.fill();
       X.stroke();
+
+      // 5. Tail lightbar (glow strip)
+      X.strokeStyle = 'rgba(6, 182, 212, 1)';
+      X.lineWidth = 3;
+      X.beginPath();
+      X.moveTo(cx - carW * 0.44, carY - carH * 0.5);
+      X.lineTo(cx + carW * 0.44, carY - carH * 0.5);
+      X.stroke();
+      
+      X.strokeStyle = 'rgba(6, 182, 212, 0.4)';
+      X.lineWidth = 7;
+      X.stroke();
+
+      // 6. Side Cameras / Mirrors
+      X.strokeStyle = 'rgba(6,182,212,0.6)';
+      X.lineWidth = 1.2;
+      X.beginPath();
+      X.moveTo(cx - carW * 0.42, carY - carH * 0.68);
+      X.lineTo(cx - carW * 0.51, carY - carH * 0.72);
+      X.lineTo(cx - carW * 0.51, carY - carH * 0.78);
+      X.stroke();
+      X.beginPath();
+      X.moveTo(cx + carW * 0.42, carY - carH * 0.68);
+      X.lineTo(cx + carW * 0.51, carY - carH * 0.72);
+      X.lineTo(cx + carW * 0.51, carY - carH * 0.78);
+      X.stroke();
+
+      // 7. Roof LIDAR dome
+      X.fillStyle = 'rgba(10, 15, 25, 1)';
+      X.strokeStyle = 'rgba(6,182,212,0.7)';
+      X.lineWidth = 1;
+      X.beginPath();
+      X.rect(cx - 6, carY - carH * 1.31, 12, 3);
+      X.fill(); X.stroke();
+
+      X.fillStyle = 'rgba(6,182,212,0.8)';
+      X.beginPath();
+      X.arc(cx, carY - carH * 1.34, 4, 0, Math.PI, true);
+      X.closePath();
+      X.fill();
+      X.stroke();
+
+      // 8. Bounding box & Tracking Overlay
+      const scanI = (Math.sin(t * 0.003) + 1) * 0.5;
+      X.strokeStyle = `rgba(6, 182, 212, ${0.1 + scanI * 0.15})`;
+      X.lineWidth = 1;
+      const boxPad = 8;
+      const bX1 = cx - carW * 0.54 - boxPad;
+      const bY1 = carY - carH * 1.42 - boxPad;
+      const bW = carW * 1.08 + boxPad * 2;
+      const bH = carH * 1.42 + boxPad * 2;
+
+      const bLen = 10;
+      X.beginPath();
+      X.moveTo(bX1, bY1 + bLen); X.lineTo(bX1, bY1); X.lineTo(bX1 + bLen, bY1);
+      X.moveTo(bX1 + bW - bLen, bY1); X.lineTo(bX1 + bW, bY1); X.lineTo(bX1 + bW, bY1 + bLen);
+      X.moveTo(bX1, bY1 + bH - bLen); X.lineTo(bX1, bY1 + bH); X.lineTo(bX1 + bLen, bY1 + bH);
+      X.moveTo(bX1 + bW - bLen, bY1 + bH); X.lineTo(bX1 + bW, bY1 + bH); X.lineTo(bX1 + bW, bY1 + bH - bLen);
+      X.stroke();
+
+      X.fillStyle = `rgba(6, 182, 212, 0.4)`;
+      X.font = '700 8px monospace';
+      X.textAlign = 'left';
+      X.fillText('HOST_VEHICLE//EGO', bX1, bY1 - 4);
+      X.textAlign = 'right';
+      X.fillText('SYS_OK', bX1 + bW, bY1 - 4);
     }
 
     /* ── sensor scan lines from car ── */
     function drawSensors(t) {
       const cx = W / 2;
-      const carTop = H * 0.72 - (W * 0.12) * 0.38 * 1.35;
+      const carY = H * 0.72;
+      const carW = W * 0.12;
+      const carH = carW * 0.40;
+      const carTop = carY - carH * 1.34;
       const horizon = H * 0.38;
       const scanAngle = (t * 0.001) % (Math.PI * 2);
       const numRays = 12;
@@ -2887,6 +3086,137 @@
       el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
       el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
     });
+  })();
+
+  // ── SDR Waterfall / RF Signal Animation (Ham Radio) ──
+  (function () {
+    const C = document.getElementById('ham-waterfall-canvas');
+    if (!C) return;
+    const X = C.getContext('2d');
+    
+    let W = 0, H = 0;
+    function resize() {
+      const rect = C.getBoundingClientRect();
+      W = C.width = Math.floor(rect.width);
+      H = C.height = Math.floor(rect.height);
+    }
+    window.addEventListener('resize', resize);
+    setTimeout(resize, 100);
+
+    const specH = 26;
+    let t = 0;
+    
+    function draw() {
+      if (W === 0 || H === 0) {
+        requestAnimationFrame(draw);
+        return;
+      }
+      
+      t++;
+      
+      const wfH = H - specH;
+      if (wfH > 0) {
+        X.drawImage(C, 0, specH, W, wfH - 1, 0, specH + 1, W, wfH - 1);
+      }
+      
+      const data = new Float32Array(W);
+      for (let i = 0; i < W; i++) {
+        let val = Math.random() * 0.15;
+        
+        const distToCenter = Math.abs(i - W * 0.5);
+        if (distToCenter < 12) {
+          const mod = 0.4 + Math.sin(t * 0.2) * 0.15 + Math.sin(t * 0.05) * 0.08;
+          val += Math.max(0, mod * Math.exp(-(distToCenter * distToCenter) / 16));
+        }
+
+        const distToBeacon = Math.abs(i - W * 0.2);
+        if (distToBeacon < 6) {
+          const morseTime = (t * 0.04) % 10;
+          const isKeyed = (morseTime < 2) || (morseTime > 2.5 && morseTime < 3) || (morseTime > 3.5 && morseTime < 5);
+          if (isKeyed) {
+            val += Math.max(0, 0.45 * Math.exp(-(distToBeacon * distToBeacon) / 5));
+          }
+        }
+
+        const slidePos = W * 0.75 + Math.sin(t * 0.008) * W * 0.12;
+        const distToSlide = Math.abs(i - slidePos);
+        if (distToSlide < 8) {
+          const modSlide = 0.3 + Math.sin(t * 0.1) * 0.1;
+          val += Math.max(0, modSlide * Math.exp(-(distToSlide * distToSlide) / 8));
+        }
+        
+        data[i] = Math.min(1.0, val);
+      }
+      
+      X.fillStyle = '#0A0E17';
+      X.fillRect(0, 0, W, specH);
+      
+      X.strokeStyle = 'rgba(6, 182, 212, 0.06)';
+      X.lineWidth = 0.5;
+      for (let gy = 5; gy < specH; gy += 6) {
+        X.beginPath(); X.moveTo(0, gy); X.lineTo(W, gy); X.stroke();
+      }
+      for (let gx = W / 10; gx < W; gx += W / 10) {
+        X.beginPath(); X.moveTo(gx, 0); X.lineTo(gx, specH); X.stroke();
+      }
+
+      X.strokeStyle = '#06B6D4';
+      X.lineWidth = 1;
+      X.beginPath();
+      for (let i = 0; i < W; i++) {
+        const y = specH - 2 - (data[i] * (specH - 4));
+        if (i === 0) X.moveTo(i, y);
+        else X.lineTo(i, y);
+      }
+      X.stroke();
+      
+      const tempImg = X.createImageData(W, 1);
+      const d = tempImg.data;
+      for (let i = 0; i < W; i++) {
+        const idx = i * 4;
+        const val = data[i];
+        
+        if (val < 0.15) {
+          d[idx] = 10;
+          d[idx + 1] = 14 + val * 100;
+          d[idx + 2] = 23 + val * 200;
+        } else if (val < 0.45) {
+          const p = (val - 0.15) / 0.3;
+          d[idx] = 6 * p;
+          d[idx + 1] = 100 + 82 * p;
+          d[idx + 2] = 150 + 64 * p;
+        } else if (val < 0.75) {
+          const p = (val - 0.45) / 0.3;
+          d[idx] = 6 + 230 * p;
+          d[idx + 1] = 182 + 73 * p;
+          d[idx + 2] = 214 - 150 * p;
+        } else {
+          const p = (val - 0.75) / 0.25;
+          d[idx] = 236 + 19 * p;
+          d[idx + 1] = 255 * p;
+          d[idx + 2] = 64 + 191 * p;
+        }
+        d[idx + 3] = 255;
+      }
+      X.putImageData(tempImg, 0, specH);
+      
+      X.strokeStyle = 'rgba(239, 68, 68, 0.4)';
+      X.lineWidth = 0.5;
+      X.beginPath();
+      X.moveTo(W * 0.5, 0);
+      X.lineTo(W * 0.5, H);
+      X.stroke();
+      
+      X.fillStyle = '#EF4444';
+      X.beginPath();
+      X.moveTo(W * 0.5 - 3, 0); X.lineTo(W * 0.5 + 3, 0); X.lineTo(W * 0.5, 4);
+      X.closePath();
+      X.fill();
+      
+      requestAnimationFrame(draw);
+    }
+    
+    draw();
   })();
   </script>
 </body>
