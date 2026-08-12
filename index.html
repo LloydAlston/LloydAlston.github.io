@@ -1543,6 +1543,16 @@
     .robot-bot.active .vecto-visor {
       box-shadow: 0 0 15px var(--red), 0 0 30px var(--red);
     }
+    
+    @keyframes bubblePop {
+      0% { transform: scale(0.3) translateY(20px); opacity: 0; }
+      70% { transform: scale(1.1) translateY(-5px); opacity: 1; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .popping-bubble {
+      animation: bubblePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      display: inline-block;
+    }
 
     /* ── EASTER EGG POPUP ── */
     .easter-egg-popup {
@@ -3419,7 +3429,11 @@
   <div id="easter-egg" class="easter-egg-popup">
     <div class="easter-egg-text"><strong>Vecto / Mechanix:</strong> "Hey... psst... you've been scanning this code for a long time. Are you still here, or did you leave your browser tab open while getting coffee?"</div>
     <div class="easter-egg-punchline">"Stop staring at our source code and just interview Lloyd already! Click the 'Get In Touch' button below before another company drafts him into their engineering lineup!"</div>
-    <button class="btn btn-gold" onclick="document.getElementById('cta').scrollIntoView({behavior: 'smooth'});">Get In Touch</button>
+    <button class="btn btn-gold" id="easter-egg-btn">Get In Touch</button>
+    <div id="easter-egg-contact" style="display: none; margin-top: 1rem; font-size: 0.85rem; color: #fff; font-weight: 500;">
+      <div style="margin-bottom: 0.25rem;">📞 +49 155 1083 3958</div>
+      <div>✉️ lloydalston101@gmail.com</div>
+    </div>
   </div>
 
   <script>
@@ -3474,7 +3488,15 @@
         isTyping = true;
         const fullText = botPrefix + line.text;
         
-        typeInterval = setInterval(() => {
+        // CSS Keyframe Pop & DOM Reflow
+        dialogueText.classList.remove('popping-bubble');
+        void dialogueText.offsetWidth; // Force DOM reflow
+        dialogueText.classList.add('popping-bubble');
+        
+        // Wait 300ms for bubblePop animation to finish before typing
+        setTimeout(() => {
+          if (skipIntro) return;
+          typeInterval = setInterval(() => {
           if (skipIntro) {
               clearInterval(typeInterval);
               return;
@@ -3496,7 +3518,8 @@
             }
           }
         }, 35);
-      }
+      }, 300);
+    }
 
       if(skipBtn) {
         skipBtn.addEventListener('click', () => {
@@ -3530,6 +3553,16 @@
             easterEgg.classList.add('show');
         }
       }, 180000); // 3 minutes = 180000 ms
+
+      // EASTER EGG CTA
+      const eggBtn = document.getElementById('easter-egg-btn');
+      if(eggBtn) {
+        eggBtn.addEventListener('click', () => {
+          document.getElementById('cta').scrollIntoView({behavior: 'smooth'});
+          const contactInfo = document.getElementById('easter-egg-contact');
+          if(contactInfo) contactInfo.style.display = 'block';
+        });
+      }
 
     })();
 
