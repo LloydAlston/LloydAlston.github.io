@@ -1544,14 +1544,67 @@
       box-shadow: 0 0 15px var(--red), 0 0 30px var(--red);
     }
     
+    .theater-stage {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .robot-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 120px;
+    }
+    .speech-bubble {
+      position: absolute;
+      bottom: calc(100% + 15px);
+      width: 220px;
+      background: var(--navy2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      color: var(--text);
+      font-size: 0.9rem;
+      text-align: left;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+      opacity: 0; 
+      line-height: 1.5;
+      z-index: 10;
+      transform: scale(0.3) translateY(20px);
+    }
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      border-width: 8px;
+      border-style: solid;
+    }
+    .speech-left {
+      left: -20px;
+    }
+    .speech-left::after {
+      left: 42px;
+      border-color: var(--navy2) transparent transparent transparent;
+    }
+    .speech-right {
+      right: -20px;
+    }
+    .speech-right::after {
+      right: 42px;
+      border-color: var(--navy2) transparent transparent transparent;
+    }
+
     @keyframes bubblePop {
       0% { transform: scale(0.3) translateY(20px); opacity: 0; }
       70% { transform: scale(1.1) translateY(-5px); opacity: 1; }
       100% { transform: scale(1) translateY(0); opacity: 1; }
     }
     .popping-bubble {
-      animation: bubblePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      display: inline-block;
+      animation: bubblePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
     }
 
     /* ── EASTER EGG POPUP ── */
@@ -1667,31 +1720,41 @@
     <div class="theater-controls">
       <button id="skip-intro" class="btn btn-ghost">Skip Intro ⏩</button>
     </div>
-    <div class="robot-avatars">
-      <div class="robot-bot" id="bot-m">
-        <div class="mechanix-head">
-          <div class="mechanix-eye"></div>
-          <div class="mechanix-eye"></div>
+    <div class="theater-stage">
+      <!-- MECHANIX (Left) -->
+      <div id="wrap-m" class="robot-wrapper">
+        <div class="speech-bubble speech-left" id="bubble-m"></div>
+        <div class="robot-bot" id="bot-m">
+          <div class="mechanix-head">
+            <div class="mechanix-eye"></div>
+            <div class="mechanix-eye"></div>
+          </div>
         </div>
       </div>
-      <div class="robot-bot" id="bot-v">
-        <div class="vecto-head">
-          <div class="vecto-visor"></div>
+
+      <!-- MIDDLE TERMINAL -->
+      <div class="terminal-console" style="flex: 1; margin: 0 1rem; align-self: center;">
+        <div class="terminal-header">
+          <div class="mac-dots">
+            <span class="dot red-dot"></span>
+            <span class="dot yellow-dot"></span>
+            <span class="dot green-dot"></span>
+          </div>
+          <div class="terminal-title">LloydsBot_Subsystem_v1.4.exe</div>
+        </div>
+        <div class="terminal-body" style="min-height: 80px; text-align: center; justify-content: center;">
+          <div id="system-text" style="color: var(--cyan); font-size: 1.1rem; white-space: pre-wrap;"></div>
         </div>
       </div>
-    </div>
-    <div class="terminal-console">
-      <div class="terminal-header">
-        <div class="mac-dots">
-          <span class="dot red-dot"></span>
-          <span class="dot yellow-dot"></span>
-          <span class="dot green-dot"></span>
+
+      <!-- VECTO (Right) -->
+      <div id="wrap-v" class="robot-wrapper">
+        <div class="speech-bubble speech-right" id="bubble-v"></div>
+        <div class="robot-bot" id="bot-v">
+          <div class="vecto-head">
+            <div class="vecto-visor"></div>
+          </div>
         </div>
-        <div class="terminal-title">LloydsBot_Subsystem_v1.4.exe</div>
-      </div>
-      <div class="terminal-body">
-        <div id="dialogue-text"></div>
-        <div id="dialogue-text"></div>
       </div>
     </div>
     <div class="ai-badge">
@@ -3462,7 +3525,9 @@
 
       const botM = document.getElementById('bot-m');
       const botV = document.getElementById('bot-v');
-      const dialogueText = document.getElementById('dialogue-text');
+      const bubbleM = document.getElementById('bubble-m');
+      const bubbleV = document.getElementById('bubble-v');
+      const systemText = document.getElementById('system-text');
       const skipBtn = document.getElementById('skip-intro');
 
       function updateBotState(speaker) {
@@ -3479,19 +3544,29 @@
         updateBotState(line.bot);
         
         currentChar = 0;
-        if(dialogueText) dialogueText.innerHTML = '';
-        let botPrefix = '';
-        if (line.bot === 'M') botPrefix = 'Mechanix: ';
-        if (line.bot === 'V') botPrefix = 'Vecto: ';
-        if (line.bot === 'S') botPrefix = 'SYSTEM: ';
+        
+        let targetBubble;
+        if (line.bot === 'M') targetBubble = bubbleM;
+        else if (line.bot === 'V') targetBubble = bubbleV;
+        else if (line.bot === 'S') targetBubble = systemText;
+        
+        if (bubbleM) { bubbleM.style.opacity = '0'; bubbleM.innerHTML = ''; bubbleM.classList.remove('popping-bubble'); }
+        if (bubbleV) { bubbleV.style.opacity = '0'; bubbleV.innerHTML = ''; bubbleV.classList.remove('popping-bubble'); }
+        if (systemText && line.bot === 'S') systemText.innerHTML = '';
+        
+        if (!targetBubble) return;
         
         isTyping = true;
-        const fullText = botPrefix + line.text;
+        
+        // Remove prefix inside speech bubble for M & V
+        let fullText = (line.bot === 'S') ? ('SYSTEM: ' + line.text) : line.text;
         
         // CSS Keyframe Pop & DOM Reflow
-        dialogueText.classList.remove('popping-bubble');
-        void dialogueText.offsetWidth; // Force DOM reflow
-        dialogueText.classList.add('popping-bubble');
+        if (line.bot !== 'S') {
+            void targetBubble.offsetWidth; // Force DOM reflow
+            targetBubble.classList.add('popping-bubble');
+            targetBubble.style.opacity = '1';
+        }
         
         // Wait 300ms for bubblePop animation to finish before typing
         setTimeout(() => {
@@ -3501,7 +3576,7 @@
               clearInterval(typeInterval);
               return;
           }
-          if(dialogueText) dialogueText.innerHTML += fullText[currentChar];
+          if(targetBubble) targetBubble.innerHTML += fullText[currentChar];
           currentChar++;
           if (currentChar === fullText.length) {
             clearInterval(typeInterval);
@@ -3527,7 +3602,9 @@
           clearInterval(typeInterval);
           clearTimeout(autoAdvanceTimeout);
           updateBotState('none');
-          if(dialogueText) dialogueText.innerHTML = 'Dialogue skipped by user. Enjoy exploring the portfolio! 🚀';
+          if(bubbleM) bubbleM.style.display = 'none';
+          if(bubbleV) bubbleV.style.display = 'none';
+          if(systemText) systemText.innerHTML = 'Dialogue skipped by user. Enjoy exploring the portfolio! 🚀';
           skipBtn.style.display = 'none';
 
           if(botM) { botM.style.transition = 'opacity 0.5s'; botM.style.opacity = '0'; }
