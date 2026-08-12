@@ -3737,6 +3737,17 @@
 
       if (!Array.isArray(repos) || repos.length === 0) {
         repos = FALLBACK_REPOS;
+      } else {
+        // Enrichen live API data with missing descriptions/topics from the fallback database
+        repos = repos.map(liveRepo => {
+          const fallback = FALLBACK_REPOS.find(f => f.name === liveRepo.name);
+          if (fallback) {
+            if (!liveRepo.description) liveRepo.description = fallback.description;
+            if (!liveRepo.language) liveRepo.language = fallback.language;
+            if (!liveRepo.topics || liveRepo.topics.length === 0) liveRepo.topics = fallback.topics;
+          }
+          return liveRepo;
+        });
       }
 
       function getCategory(repo) {
