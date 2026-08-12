@@ -10,18 +10,22 @@
     rel="stylesheet">
   <style>
     :root {
-      --bg: #0B0F19;
-      --navy: #0B0F19;
-      --navy2: #121826;
-      --soft: #161B29;
-      --warm: #161B29;
-      --text: #FFFFFF;
-      --mid: #cbd5e1;
-      --light: #94A3B8;
-      --border: rgba(255, 255, 255, 0.1);
-      --red: #06B6D4;
-      --gold: #06B6D4;
-      --cyan: #06B6D4;
+      --bg: #050811;          /* Deep space midnight - grounding for Water Horse */
+      --navy: #050811;
+      --navy2: #0E1322;       /* Slightly lighter dark for terminal/panels */
+      --soft: #151B2E;
+      --warm: #151B2E;
+      
+      /* ── RECRUITER-FRIENDLY TYPOGRAPHY (High Contrast) ── */
+      --text: #FFFFFF;        /* Crisp, 100% white for core body paragraphs */
+      --mid: #E2E8F0;         /* Bright slate-silver for easy reading scan-ability */
+      --light: #94A3B8;       /* Cool gray for secondary metadata labels */
+      --border: rgba(6, 182, 212, 0.2); /* Subtle cyan tinted borders */
+      
+      /* ── THE LUCK POWER HUES (Jan 25 / Number 7 / Aquarius) ── */
+      --cyan: #22D3EE;        /* Primary Luck: Boosted to bright Neon Cyan for perfect readability */
+      --gold: #22D3EE;        /* Keeps links and primary call-to-actions highly visible */
+      --red: #C084FC;         /* Secondary Luck: Lightened Amethyst Purple for high-contrast tags */
     }
 
     *,
@@ -1444,6 +1448,100 @@
         grid-template-columns: 1fr
       }
     }
+
+    /* ── ROBOT THEATER ── */
+    .robot-theater {
+      max-width: 800px;
+      margin: 8rem auto 2rem;
+      padding: 0 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 100;
+    }
+    .theater-controls {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 2rem;
+    }
+    .robot-avatars {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin-bottom: 2rem;
+    }
+    .robot-bot {
+      font-size: 4rem;
+      opacity: 0.3;
+      transition: all 0.4s ease;
+      border-radius: 50%;
+      padding: 0.5rem;
+      border: 4px solid transparent;
+    }
+    .robot-bot.active {
+      opacity: 1;
+      transform: scale(1.2);
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+      animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: scale(1.2) translateY(0px); }
+      50% { transform: scale(1.2) translateY(-10px); }
+    }
+    .terminal-console {
+      background: var(--navy2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: left;
+    }
+    .terminal-header {
+      background: rgba(0,0,0,0.3);
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .mac-dots {
+      display: flex;
+      gap: 6px;
+      margin-right: 1rem;
+    }
+    .mac-dots .dot {
+      width: 10px; height: 10px; border-radius: 50%; display:inline-block; animation:none;
+    }
+    .mac-dots .red-dot { background: #ff5f56; }
+    .mac-dots .yellow-dot { background: #ffbd2e; }
+    .mac-dots .green-dot { background: #27c93f; }
+    .terminal-title {
+      color: var(--light);
+      font-size: 0.75rem;
+      font-family: monospace;
+    }
+    .terminal-body {
+      padding: 1.5rem;
+      font-family: monospace;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    #dialogue-text {
+      color: var(--cyan);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      white-space: pre-wrap;
+    }
+    .ai-badge {
+      margin-top: 1.5rem;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.02);
+    }
   </style>
 </head>
 
@@ -1467,6 +1565,36 @@
     </ul>
     <div class="nav-status"><span class="dot"></span> Open to Werkstudent · Praktikum</div>
   </nav>
+
+  <!-- ROBOT THEATER -->
+  <div class="robot-theater">
+    <div class="theater-controls">
+      <button id="skip-intro" class="btn btn-ghost">Skip Intro ⏩</button>
+    </div>
+    <div class="robot-avatars">
+      <div class="robot-bot" id="bot-a">🤖</div>
+      <div class="robot-bot" id="bot-b">🛸</div>
+    </div>
+    <div class="terminal-console">
+      <div class="terminal-header">
+        <div class="mac-dots">
+          <span class="dot red-dot"></span>
+          <span class="dot yellow-dot"></span>
+          <span class="dot green-dot"></span>
+        </div>
+        <div class="terminal-title">LloydsBot_Subsystem_v1.4.exe</div>
+      </div>
+      <div class="terminal-body">
+        <div id="dialogue-text"></div>
+        <div style="text-align: right;">
+          <button id="next-btn" class="btn btn-gold" style="display: none;">Next ▶</button>
+        </div>
+      </div>
+    </div>
+    <div class="ai-badge">
+      🤖 Built with Human Brains &amp; AI-Assisted Tooling
+    </div>
+  </div>
 
   <!-- HERO -->
   <header class="hero">
@@ -3189,6 +3317,190 @@
     
     draw();
   })();
+  </script>
+  <script>
+    // ── ROBOT DIALOGUE THEATER ──
+    (function(){
+      const dialogue = [
+        { bot: 'A', text: "beep boop... Wait, look over there! A wild Recruiter or Hiring Manager has entered the perimeter!" },
+        { bot: 'B', text: "Are you serious? Let me run a diagnostic... whirrr" },
+        { bot: 'B', text: "Sapperlot! They actually clicked the link on purpose. Servus! Welcome!" },
+        { bot: 'A', text: "Servus! But wait, why are they here? To look at Lloyd's automotive portfolio?" },
+        { bot: 'B', text: "Obviously. Though I was hoping they were here to optimize our torque vectors. I feel like my internal drivetrain has a bit of latency." },
+        { bot: 'A', text: "Hah! Don't scare them away with engineering jargon yet. We need to deploy the professional recruiter hookup protocols!" },
+        { bot: 'B', text: "Right! Act engaging! Ahem... 'Are you an electronic control unit? Because you are completely managing my internal states right now.'" },
+        { bot: 'A', text: "'Are you a high-performance turbocharger? Because you just eliminated all the lag in my career trajectory.'" },
+        { bot: 'B', text: "'Is your company a dual-clutch transmission? Because our synergy would mean lightning-fast shifts toward future growth.'" },
+        { bot: 'A', text: "Boom. Nailed it. Absolute automotive corporate charm. Lloyd should definitely put us on the payroll." },
+        { bot: 'B', text: "Agreed. Anyway, human friend, feel free to scroll down to check out Lloyd's real simulation, testing, and vehicle dynamics work below!" },
+        { bot: 'S', text: "[Dialogue Complete. Proceed to explore Lloyd's engineering expertise.]" }
+      ];
+
+      let currentLine = 0;
+      let currentChar = 0;
+      let isTyping = false;
+      let typeInterval;
+      let skipIntro = false;
+
+      const botA = document.getElementById('bot-a');
+      const botB = document.getElementById('bot-b');
+      const dialogueText = document.getElementById('dialogue-text');
+      const nextBtn = document.getElementById('next-btn');
+      const skipBtn = document.getElementById('skip-intro');
+
+      function updateBotState(speaker) {
+        if(botA) botA.classList.remove('active');
+        if(botB) botB.classList.remove('active');
+        if(speaker === 'A' && botA) botA.classList.add('active');
+        else if(speaker === 'B' && botB) botB.classList.add('active');
+      }
+
+      function typeLine() {
+        if (skipIntro) return;
+        const line = dialogue[currentLine];
+        updateBotState(line.bot);
+        
+        currentChar = 0;
+        if(dialogueText) dialogueText.innerHTML = '';
+        let botPrefix = '';
+        if (line.bot === 'A') botPrefix = 'Bot A: ';
+        if (line.bot === 'B') botPrefix = 'Bot B: ';
+        if (line.bot === 'S') botPrefix = 'SYSTEM: ';
+        
+        isTyping = true;
+        if(nextBtn) nextBtn.style.display = 'none';
+        
+        const fullText = botPrefix + line.text;
+        
+        typeInterval = setInterval(() => {
+          if (skipIntro) {
+              clearInterval(typeInterval);
+              return;
+          }
+          if(dialogueText) dialogueText.innerHTML += fullText[currentChar];
+          currentChar++;
+          if (currentChar === fullText.length) {
+            clearInterval(typeInterval);
+            isTyping = false;
+            if (currentLine < dialogue.length - 1) {
+              if(nextBtn) nextBtn.style.display = 'inline-block';
+            } else {
+              updateBotState('none');
+              if(skipBtn) skipBtn.style.display = 'none';
+            }
+          }
+        }, 35);
+      }
+
+      if(nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          if (!isTyping && currentLine < dialogue.length - 1) {
+            currentLine++;
+            typeLine();
+          }
+        });
+      }
+
+      if(skipBtn) {
+        skipBtn.addEventListener('click', () => {
+          skipIntro = true;
+          clearInterval(typeInterval);
+          updateBotState('none');
+          if(dialogueText) dialogueText.innerHTML = 'Dialogue skipped by user. Enjoy exploring the portfolio! 🚀';
+          if(nextBtn) nextBtn.style.display = 'none';
+          skipBtn.style.display = 'none';
+        });
+      }
+
+      // Start dialogue
+      setTimeout(() => {
+        if(botA && botB && dialogueText) typeLine();
+      }, 1000);
+    })();
+  
+    // ── GITHUB DYNAMIC FETCH ──
+    (async function(){
+      try {
+        const response = await fetch('https://api.github.com/users/LloydAlston/repos?per_page=100&sort=updated');
+        if (!response.ok) throw new Error('API Rate Limit or Error');
+        const repos = await response.json();
+
+        repos.forEach(repo => {
+          const topics = repo.topics || [];
+          if (topics.length === 0) return;
+
+          let targetGridId = null;
+          let targetCat = '';
+
+          if (topics.includes('battery') || topics.includes('power-electronics')) {
+            targetGridId = 'section-battery';
+            targetCat = 'battery';
+          } else if (topics.includes('safety') || topics.includes('adas') || topics.includes('passive-safety')) {
+            targetGridId = 'section-safety';
+            targetCat = 'safety';
+          } else if (topics.includes('dynamics') || topics.includes('powertrain') || topics.includes('simulation') || topics.includes('vehicle-dynamics')) {
+            targetGridId = 'section-dynamics';
+            targetCat = 'dynamics';
+          } else if (topics.includes('ai') || topics.includes('machine-learning') || topics.includes('autonomy')) {
+            targetGridId = 'section-ai';
+            targetCat = 'ai';
+          } else if (topics.includes('manufacturing')) {
+            targetGridId = 'section-manufacturing';
+            targetCat = 'manufacturing';
+          } else if (topics.includes('testing')) {
+            targetGridId = 'section-testing';
+            targetCat = 'testing';
+          } else if (topics.includes('systems')) {
+            targetGridId = 'section-systems';
+            targetCat = 'systems';
+          }
+
+          if (targetGridId) {
+            const section = document.getElementById(targetGridId);
+            if (section) {
+              const grid = section.querySelector('.proj-grid');
+              if (grid) {
+                const card = document.createElement('div');
+                card.className = 'proj-card';
+                card.setAttribute('data-cat', targetCat);
+                
+                const repoName = repo.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                const lang = repo.language || 'Documentation';
+                
+                let tagsHTML = `<span class="tag">${lang}</span>`;
+                topics.forEach(t => {
+                    tagsHTML += `<span class="tag">${t.replace(/-/g,' ')}</span>`;
+                });
+
+                let metricsHTML = '';
+                if(repo.stargazers_count > 0 || repo.forks_count > 0) {
+                    metricsHTML = `
+                      <div class="proj-metrics">
+                        ${repo.stargazers_count > 0 ? `<div class="metric"><span class="mn">${repo.stargazers_count}</span><span class="ml">Stars</span></div>` : ''}
+                        ${repo.forks_count > 0 ? `<div class="metric"><span class="mn">${repo.forks_count}</span><span class="ml">Forks</span></div>` : ''}
+                      </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                  <div class="proj-body">
+                    <div class="proj-type">GitHub API · Live</div>
+                    <div class="proj-title">${repoName}</div>
+                    <p class="proj-desc">${repo.description || 'No description provided for this repository.'}</p>
+                    ${metricsHTML}
+                    <div class="cad-tags">${tagsHTML}</div>
+                    <a href="${repo.html_url}" target="_blank" class="proj-link">View on GitHub →</a>
+                  </div>
+                `;
+                grid.appendChild(card);
+              }
+            }
+          }
+        });
+      } catch (error) {
+        console.warn('GitHub API failed to load dynamically: ', error);
+      }
+    })();
   </script>
 </body>
 
