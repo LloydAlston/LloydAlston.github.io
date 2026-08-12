@@ -1481,6 +1481,11 @@
     .robot-bot.entered-right {
       animation: slideInRight 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     }
+    .robot-bot.settled {
+      transform: translate(0, 0) !important;
+      opacity: 0.85;
+      animation: none !important;
+    }
     @keyframes slideInLeft {
       0% { transform: translate(-300px, -200px); opacity: 0; }
       100% { transform: translate(0, 0); opacity: 0.8; }
@@ -1738,8 +1743,8 @@
         </div>
       </div>
 
-      <!-- MIDDLE TERMINAL -->
-      <div class="terminal-console" style="flex: 1; margin: 0 1rem; align-self: center;">
+      <!-- MIDDLE TERMINAL (Hidden until dialogue finishes or system message) -->
+      <div id="terminal-console" class="terminal-console" style="flex: 1; margin: 0 1rem; align-self: center; display: none; opacity: 0; transition: opacity 0.5s ease;">
         <div class="terminal-header">
           <div class="mac-dots">
             <span class="dot red-dot"></span>
@@ -3577,6 +3582,15 @@
         
         isTyping = true;
         
+        // Unhide Terminal Console ONLY on System message
+        if (line.bot === 'S') {
+          const terminalConsole = document.getElementById('terminal-console');
+          if (terminalConsole) {
+            terminalConsole.style.display = 'block';
+            setTimeout(() => { terminalConsole.style.opacity = '1'; }, 20);
+          }
+        }
+
         // Remove prefix inside speech bubble for M & V
         let fullText = (line.bot === 'S') ? ('SYSTEM: ' + line.text) : line.text;
         
@@ -3623,6 +3637,12 @@
           updateBotState('none');
           if(bubbleM) bubbleM.style.display = 'none';
           if(bubbleV) bubbleV.style.display = 'none';
+          
+          const terminalConsole = document.getElementById('terminal-console');
+          if (terminalConsole) {
+            terminalConsole.style.display = 'block';
+            terminalConsole.style.opacity = '1';
+          }
           if(systemText) systemText.innerHTML = 'Dialogue skipped by user. Enjoy exploring the portfolio! 🚀';
           skipBtn.style.display = 'none';
 
@@ -3636,6 +3656,12 @@
         if(botM) botM.classList.add('entered-left');
         if(botV) botV.classList.add('entered-right');
         
+        // Transition to settled state after initial slide in
+        setTimeout(() => {
+          if(botM) { botM.classList.remove('entered-left'); botM.classList.add('settled'); }
+          if(botV) { botV.classList.remove('entered-right'); botV.classList.add('settled'); }
+        }, 1000);
+
         // Start typing after sliding in
         setTimeout(() => {
           if(botM && botV && !skipIntro) typeLine();
