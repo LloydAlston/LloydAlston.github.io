@@ -1558,6 +1558,12 @@
       flex-direction: column;
       align-items: center;
       width: 120px;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), z-index 0.4s;
+      z-index: 1;
+    }
+    .robot-wrapper.speaking {
+      transform: scale(1.3) translateY(-12px);
+      z-index: 100;
     }
     .speech-bubble {
       position: absolute;
@@ -2972,8 +2978,9 @@
       <h3>Open to Roles in Germany</h3>
       <p>Werkstudent · Praktikum · Thesis — Vehicle Safety, ADAS, Powertrain, Mechanical Development</p>
     </div>
-    <div class="cta-btns">
-      <a href="mailto:lloydalston101@gmail.com" class="btn btn-gold">Send Email</a>
+    <div class="cta-btns" style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+      <a href="tel:+4915510833958" class="btn btn-gold">📞 +49 155 1083 3958</a>
+      <a href="mailto:lloydalston101@gmail.com" class="btn btn-gold">✉️ lloydalston101@gmail.com</a>
       <a href="https://linkedin.com/in/lloydalstondsouza" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
     </div>
   </div>
@@ -3492,10 +3499,12 @@
   <div id="easter-egg" class="easter-egg-popup">
     <div class="easter-egg-text"><strong>Vecto / Mechanix:</strong> "Hey... psst... you've been scanning this code for a long time. Are you still here, or did you leave your browser tab open while getting coffee?"</div>
     <div class="easter-egg-punchline">"Stop staring at our source code and just interview Lloyd already! Click the 'Get In Touch' button below before another company drafts him into their engineering lineup!"</div>
-    <button class="btn btn-gold" id="easter-egg-btn">Get In Touch</button>
-    <div id="easter-egg-contact" style="display: none; margin-top: 1rem; font-size: 0.85rem; color: #fff; font-weight: 500;">
-      <div style="margin-bottom: 0.25rem;">📞 +49 155 1083 3958</div>
-      <div>✉️ lloydalston101@gmail.com</div>
+    <button class="btn btn-gold" id="easter-egg-btn" style="width: 100%; justify-content: center; margin-bottom: 0.5rem;">Get In Touch</button>
+    <div id="easter-egg-contact" style="display: none; margin-top: 0.75rem; font-size: 0.85rem; color: #fff; font-weight: 500; text-align: center;">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
+        <a href="tel:+4915510833958" class="btn btn-gold" style="justify-content: center;">📞 Call +49 155 1083 3958</a>
+        <a href="mailto:lloydalston101@gmail.com" class="btn btn-ghost" style="justify-content: center; border-color: var(--cyan); color: var(--cyan);">✉️ Email lloydalston101@gmail.com</a>
+      </div>
     </div>
   </div>
 
@@ -3531,10 +3540,20 @@
       const skipBtn = document.getElementById('skip-intro');
 
       function updateBotState(speaker) {
+        const wrapM = document.getElementById('wrap-m');
+        const wrapV = document.getElementById('wrap-v');
         if(botM) botM.classList.remove('active');
         if(botV) botV.classList.remove('active');
-        if(speaker === 'M' && botM) botM.classList.add('active');
-        else if(speaker === 'V' && botV) botV.classList.add('active');
+        if(wrapM) wrapM.classList.remove('speaking');
+        if(wrapV) wrapV.classList.remove('speaking');
+
+        if(speaker === 'M' && botM) {
+          botM.classList.add('active');
+          if(wrapM) wrapM.classList.add('speaking');
+        } else if(speaker === 'V' && botV) {
+          botV.classList.add('active');
+          if(wrapV) wrapV.classList.add('speaking');
+        }
       }
 
       function typeLine() {
@@ -3619,7 +3638,7 @@
         
         // Start typing after sliding in
         setTimeout(() => {
-          if(botM && botV && dialogueText && !skipIntro) typeLine();
+          if(botM && botV && !skipIntro) typeLine();
         }, 1200);
       }, 1000);
 
@@ -3651,51 +3670,53 @@
         if (!response.ok) throw new Error('API Rate Limit or Error');
         const repos = await response.json();
 
-        repos.forEach(repo => {
-          const topics = repo.topics || [];
-          if (topics.length === 0) return;
+        function getCategory(repo) {
+          const name = (repo.name || '').toLowerCase();
+          const desc = (repo.description || '').toLowerCase();
+          const lang = (repo.language || '').toLowerCase();
+          const topics = (repo.topics || []).map(t => t.toLowerCase());
+          const text = [name, desc, lang, ...topics].join(' ');
 
-          let targetGridId = null;
-          let targetCat = '';
-
-          if (topics.includes('battery') || topics.includes('power-electronics')) {
-            targetGridId = 'section-battery';
-            targetCat = 'battery';
-          } else if (topics.includes('safety') || topics.includes('adas') || topics.includes('passive-safety')) {
-            targetGridId = 'section-safety';
-            targetCat = 'safety';
-          } else if (topics.includes('dynamics') || topics.includes('powertrain') || topics.includes('simulation') || topics.includes('vehicle-dynamics')) {
-            targetGridId = 'section-dynamics';
-            targetCat = 'dynamics';
-          } else if (topics.includes('ai') || topics.includes('machine-learning') || topics.includes('autonomy')) {
-            targetGridId = 'section-ai';
-            targetCat = 'ai';
-          } else if (topics.includes('manufacturing')) {
-            targetGridId = 'section-manufacturing';
-            targetCat = 'manufacturing';
-          } else if (topics.includes('testing')) {
-            targetGridId = 'section-testing';
-            targetCat = 'testing';
-          } else if (topics.includes('systems')) {
-            targetGridId = 'section-systems';
-            targetCat = 'systems';
+          if (topics.includes('battery') || topics.includes('power-electronics') || /battery|sic|power|charging|thermal|degradation|ct-defect/.test(text)) {
+            return { gridId: 'section-battery', cat: 'battery' };
+          } else if (topics.includes('safety') || topics.includes('adas') || topics.includes('passive-safety') || /adas|crash|fatigue|restraint|safety|failure|radar/.test(text)) {
+            return { gridId: 'section-safety', cat: 'safety' };
+          } else if (topics.includes('dynamics') || topics.includes('powertrain') || topics.includes('simulation') || topics.includes('vehicle-dynamics') || /truck|dynamics|powertrain|ev-drive|trajectory|tire|vehicle|simulink/.test(text)) {
+            return { gridId: 'section-dynamics', cat: 'dynamics' };
+          } else if (topics.includes('ai') || topics.includes('machine-learning') || topics.includes('autonomy') || /driver-state|vae|ota|ai|ml|autonomy|multimodal|llm/.test(text)) {
+            return { gridId: 'section-ai', cat: 'ai' };
+          } else if (topics.includes('testing') || /test|ci|can-ci|evt|analytics|pytest|qa/.test(text)) {
+            return { gridId: 'section-testing', cat: 'testing' };
+          } else if (topics.includes('manufacturing') || /manufacturing|dmaic|cad|quality/.test(text)) {
+            return { gridId: 'section-manufacturing', cat: 'manufacturing' };
+          } else if (topics.includes('systems') || /systems|mbse|cyber|emag/.test(text)) {
+            return { gridId: 'section-systems', cat: 'systems' };
           }
+          return { gridId: 'section-systems', cat: 'systems' };
+        }
 
-          if (targetGridId) {
-            const section = document.getElementById(targetGridId);
+        repos.forEach(repo => {
+          // Skip if card already exists in DOM
+          const existing = document.querySelector(`a[href="${repo.html_url}"]`) || document.querySelector(`a[href*="/${repo.name}"]`);
+          if (existing) return;
+
+          const mapping = getCategory(repo);
+          if (mapping && mapping.gridId) {
+            const section = document.getElementById(mapping.gridId);
             if (section) {
               const grid = section.querySelector('.proj-grid');
               if (grid) {
                 const card = document.createElement('div');
                 card.className = 'proj-card';
-                card.setAttribute('data-cat', targetCat);
+                card.setAttribute('data-cat', mapping.cat);
                 
-                const repoName = repo.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                const repoName = repo.name.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                 const lang = repo.language || 'Documentation';
+                const topics = repo.topics || [];
                 
                 let tagsHTML = `<span class="tag">${lang}</span>`;
                 topics.forEach(t => {
-                    tagsHTML += `<span class="tag">${t.replace(/-/g,' ')}</span>`;
+                    tagsHTML += `<span class="tag">${t.replace(/[-_]/g,' ')}</span>`;
                 });
 
                 let metricsHTML = '';
